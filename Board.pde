@@ -1,4 +1,4 @@
-class Board { //<>// //<>// //<>//
+class Board { //<>//
   final int lionA = 1, lionB=11;
   final int kirinA = 2, kirinB=12;
   final int zouA = 3, zouB =13;
@@ -7,14 +7,6 @@ class Board { //<>// //<>// //<>//
   final int nothing = 0;
   int[][] banmen = {{zouA, lionA, kirinA}, {nothing, hiyokoA, nothing}, {nothing, hiyokoB, nothing}, {kirinB, lionB, zouB}};
   int[][] mochibanmen = {{nothing, nothing, nothing}, {nothing, nothing, nothing}};
-
-  Board() {
-    this.drawBaseBanmen();
-    this.drawMochiBanmen();
-    //translate(squareSize,0);
-    //img = loadImage("lionA.png");
-    //image(img, squareSize*0, 1*squareSize, squareSize, squareSize);
-  }
 
   //Base Banmen
   void drawBaseBanmen() {
@@ -35,9 +27,10 @@ class Board { //<>// //<>// //<>//
   }
   void drawMochiBanmen() {
     pushMatrix();
-    noStroke();
+    stroke(#FFFFFF);
+    strokeWeight(2);
     for (int i=0; i<2; i++) {
-      for (int j=0; j<4; j++) {
+      for (int j=0; j<mochiHaba; j++) {
         fill(#FFCCFF);
         rect(squareSize*i, j*squareSize, squareSize, squareSize);
       }
@@ -51,6 +44,19 @@ class Board { //<>// //<>// //<>//
     String komaImage = komaNumber + ".png";
     PImage img;
     img = loadImage(komaImage);
-    image(img, squareSize*x, y*squareSize, squareSize, squareSize);
+    image(img, squareSize*x+2, y*squareSize+2, squareSize-4, squareSize-4);
+  }
+  
+  void select(int x, int y){
+    if(!selected){
+      noLoop();
+      fill(#FF0000,100);
+      println("selected x:" + x +" y:"+y);
+      rect(x*squareSize, y*squareSize, squareSize, squareSize);
+      selected = true;
+    }else{
+      selected = false;
+      loop();
+    }
   }
 }
