@@ -1,18 +1,12 @@
-class Board { //<>//
+class Banmen {
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
+  KomaSet mySet;
+  Banmen(KomaSet ks){
+    this.mySet = ks;
+  }
 
-  final int lionA = 1, lionB=11;
-  final int kirinA = 2, kirinB=12;
-  final int zouA = 3, zouB =13;
-  final int hiyokoA = 4, hiyokoB=14;
-  final int niwatoriA = 5, niwatoriB=15;
-  final int nothing = 0;
-  int[][] banmen = {{zouA, lionA, kirinA}, {nothing, hiyokoA, nothing}, {nothing, hiyokoB, nothing}, {kirinB, lionB, zouB}};
-  int[][] mochibanmen = {{nothing, nothing, nothing}, {nothing, nothing, nothing}};
-
-  //Base Banmen
   void drawBaseBanmen() {
     pushMatrix();
     translate(squareSize, 0);
@@ -24,15 +18,15 @@ class Board { //<>//
           fill(#FFFFFF);
         }
         rect(squareSize*i, j*squareSize, squareSize, squareSize);
-        this.drawKoma(banmen[i][j], i, j);
+        //this.drawKoma(banmen[i][j], i, j);
       }
     }
     popMatrix();
   }
-  void drawMochiBanmen() {
+  void drawBaseMochiBanmen() {
     pushMatrix();
     stroke(#FFFFFF);
-    strokeWeight(2);
+    //strokeWeight(2);
     for (int i=0; i<2; i++) {
       for (int j=0; j<mochiHaba; j++) {
         fill(#FFCCFF);
@@ -42,23 +36,30 @@ class Board { //<>//
     }
     popMatrix();
   }
-
-  void drawKoma(int komaNumber, int x, int y) {
-    if (komaNumber == nothing) return;
-    String komaImage = komaNumber + ".png";
+  void drawKoma() {
+    String komaImage = "";
     PImage img;
-    img = loadImage(komaImage);
-    image(img, squareSize*x+2, y*squareSize+2, squareSize-4, squareSize-4);
+    pushMatrix();
+    translate(squareSize, 0);
+    for (Koma k : this.mySet.getKomas()) {
+      if (k.getTeam()==0) {
+        komaImage = k.getName()+"A.png";
+      } else {
+        komaImage = k.getName()+"B.png";
+      }
+      img = loadImage(komaImage);
+      image(img, squareSize*k.getX()+2, k.getY()*squareSize+2, squareSize-4, squareSize-4);
+    }
+    popMatrix();
   }
-
-  void select(int x, int y) {
-    if (!selected) {
+  void select(int x, int y){
+    if(!selected){
       noLoop();
-      fill(#FF0000, 100);
+      fill(#FF0000,100);
       println("selected x:" + x +" y:"+y);
       rect(x*squareSize, y*squareSize, squareSize, squareSize);
       selected = true;
-    } else {
+    }else{
       selected = false;
       loop();
     }

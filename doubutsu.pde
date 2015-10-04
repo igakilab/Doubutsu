@@ -1,21 +1,16 @@
 static int squareSize = 100; //<>//
-static int baseYoko = 4;
-static int baseTate = 3;
-static int mochiHaba = 4;
-Board banmen;
+Banmen banmen;
 boolean selected = false;
-//PImage img;
+KomaSet mySet = new KomaSet();
 void setup() {
   surface.setSize(6*squareSize, 4*squareSize);
-  banmen = new Board();
+  banmen = new Banmen(mySet);
 }
 
-void draw() {
-  //stroke(#FFFFFF);
-  //img = loadImage("hiyokoA.png");
-  //image(img,squareSize*i, j*squareSize, squareSize, squareSize);
+void draw(){
   banmen.drawBaseBanmen();
-  banmen.drawMochiBanmen();
+  banmen.drawBaseMochiBanmen();
+  banmen.drawKoma();
 }
 
 void mouseReleased(){
