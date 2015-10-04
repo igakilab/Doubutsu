@@ -17,4 +17,22 @@ class KomaSet {
   Koma[] getKomas(){
     return this.komas;
   }
+  
+  Koma getKomaFromPlace(int x, int y){
+    for(Koma k:komas){
+      if(x == k.getX() && y == k.getY()){
+        return k;
+      }
+    }
+    return null;
+  }
+  Koma getSelectedKoma(){
+    for(Koma k:komas){
+      if(k.isSelected()){
+        return k;
+      }
+    }
+    return null;
+  }
+  
 }

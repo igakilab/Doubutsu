@@ -6,14 +6,18 @@
  
  activeは通常trueだが，ひよこがにわとりに変化したとき，あるいはその逆の場合に
  値が変化する．activeがfalseになると，盤面及び持ち駒として表示されない．
+ 
+ selectedは通常falseで，ユーザにマウスでクリックされたときにtrueになり，
+ 移動場所が選択されるとfalseに戻る
 **/
 class Koma{
-  private String name;
-  private int x;//x,y不要かも
-  private int y;
-  private int team;//0 or 1
-  private boolean captured;
-  private boolean active;
+  String name;
+  int x;
+  int y;
+  int team;//0 or 1
+  boolean captured;
+  boolean active;
+  boolean selected;
   
   Koma(String name, int x, int y, int team, boolean active){
     this.name = name;
@@ -21,6 +25,8 @@ class Koma{
     this.y = y;
     this.team = team;
     this.captured = false;
+    this.active = active;
+    this.selected = false;
   }
   String getName(){
     return this.name;
@@ -48,5 +54,17 @@ class Koma{
   }
   void setCaptured(boolean captured){
     this.captured = captured;
+  }
+  boolean isActive(){
+    return this.active;
+  }
+  void setActive(boolean active){
+    this.active = active;
+  }
+  boolean isSelected(){
+    return this.selected;
+  }
+  void setSelected(boolean selected){
+    this.selected = selected;
   }
 }

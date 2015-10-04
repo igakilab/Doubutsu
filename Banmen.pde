@@ -3,7 +3,7 @@ class Banmen {
   final int baseTate = 3;
   final int mochiHaba = 4;
   KomaSet mySet;
-  Banmen(KomaSet ks){
+  Banmen(KomaSet ks) {
     this.mySet = ks;
   }
 
@@ -42,24 +42,36 @@ class Banmen {
     pushMatrix();
     translate(squareSize, 0);
     for (Koma k : this.mySet.getKomas()) {
-      if (k.getTeam()==0) {
+      if (k.getTeam()==0 && k.isActive()) {
         komaImage = k.getName()+"A.png";
-      } else {
+      } else if(k.getTeam() ==1 && k.isActive()) {
         komaImage = k.getName()+"B.png";
+      }else{
+        continue;
       }
       img = loadImage(komaImage);
       image(img, squareSize*k.getX()+2, k.getY()*squareSize+2, squareSize-4, squareSize-4);
     }
     popMatrix();
   }
-  void select(int x, int y){
-    if(!selected){
-      noLoop();
-      fill(#FF0000,100);
+  void select(int x, int y) {
+    if (!selected) {
+      fill(#FF0000, 100);
       println("selected x:" + x +" y:"+y);
-      rect(x*squareSize, y*squareSize, squareSize, squareSize);
-      selected = true;
-    }else{
+      Koma koma = mySet.getKomaFromPlace(x-1, y);
+      if (koma != null) {
+        rect(x*squareSize, y*squareSize, squareSize, squareSize);
+        koma.setSelected(true);
+        selected = true;
+        noLoop();
+      }
+    } else {
+      Koma koma = mySet.getSelectedKoma();
+      if(koma != null){
+        koma.setX(x-1);
+        koma.setY(y);
+        koma.setSelected(false);
+      }
       selected = false;
       loop();
     }
