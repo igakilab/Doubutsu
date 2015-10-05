@@ -42,9 +42,9 @@ class Banmen {
     pushMatrix();
     translate(squareSize, 0);
     for (Koma k : this.mySet.getKomas()) {
-      if (k.getTeam()==0 && k.isActive()) {
+      if (k.getTeam()==0 && k.isActive() && !k.isCaptured()) {
         komaImage = k.getName()+"A.png";
-      } else if(k.getTeam() ==1 && k.isActive()) {
+      } else if(k.getTeam() ==1 && k.isActive() && !k.isCaptured()) {
         komaImage = k.getName()+"B.png";
       }else{
         continue;
@@ -68,6 +68,10 @@ class Banmen {
     } else {
       Koma koma = mySet.getSelectedKoma();
       if(koma != null){
+        Koma koma2 = mySet.getKomaFromPlace(x-1,y);
+        if(koma2 != null){//移動先に駒がある場合はその駒を取る
+          koma2.setCaptured(true);
+        }
         koma.setX(x-1);
         koma.setY(y);
         koma.setSelected(false);
