@@ -1,4 +1,4 @@
-class Banmen { //<>//
+class Banmen { //<>// //<>//
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
@@ -22,7 +22,7 @@ class Banmen { //<>//
     }
     popMatrix();
   }
-  void drawKomas() { //<>//
+  void drawKomas() {
     pushMatrix();
     translate(squareSize, 0);
     for (Koma k : this.mySet.getKomas()) {
@@ -36,13 +36,18 @@ class Banmen { //<>//
     //strokeWeight(2);
     for (int i=0; i<2; i++) {
       Koma[] cKomas = mySet.getCapturedKoma(i);
-      for(int j=0;j<cKomas.length;j++){
-        cKomas[j].drawCaptured(i,j);
+      for (int j=0; j<cKomas.length; j++) {
+        cKomas[j].drawCaptured(i, j);
       }
       translate(baseYoko*squareSize, 0);
     }
     popMatrix();
   }
+
+  /**
+   ** 盤面がクリックされたときによばれるメソッド
+   ** ベースとなる盤面での処理（駒の座標等）は(x-1, y)として表現される(両サイドが持ち駒領域なため）．
+   **/
   void select(int x, int y) {
     if (!selected) {
       println("selected x:" + x +" y:"+y);
@@ -57,13 +62,18 @@ class Banmen { //<>//
     } else {
       Koma koma = mySet.getSelectedKoma();
       if (koma != null) {
-        Koma koma2 = mySet.getKomaFromPlace(x-1, y);
-        if (koma2 != null) {//移動先に駒がある場合はその駒を取る
-          koma2.captured=true;
-          koma2.team = (koma2.team + 1) % 2;
+        if (koma.canMove(x-1, y)) {
+          Koma koma2 = mySet.getKomaFromPlace(x-1, y);
+          if (koma2 != null && koma.canCapture(koma2)) {
+            koma2.captured=true;
+            koma2.team = (koma2.team + 1)%2;
+            koma.x=x-1;
+            koma.y=y;
+          } else if (koma2==null) {
+            koma.x=x-1;
+            koma.y=y;
+          }
         }
-        koma.x = x-1;
-        koma.y = y;
         koma.selected=false;
       }
       selected = false;

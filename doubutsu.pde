@@ -16,6 +16,6 @@ void draw(){
 void mouseReleased(){
   int x = mouseX/squareSize;
   int y = mouseY/squareSize;
-  println("x:"+x + " y:"+y);
+  //println("x:"+x + " y:"+y);
   banmen.select(x,y);
 }

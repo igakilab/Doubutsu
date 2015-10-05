@@ -60,4 +60,39 @@ class Koma {
     PImage img = loadImage(komaImage);
     image(img, team*squareSize + 2, index*squareSize+2, squareSize-4, squareSize-4);
   }
+  
+  /**
+  ** 対象の駒が(x,y)に移動できるかどうか
+  **/
+  boolean canMove(int x, int y){
+    println("x:"+x+" y:"+y+" this.x:"+this.x+" this.y:"+this.y);
+    if(x<0 || x>3 || y<0 || y>2) return false;
+    
+    if(abs(x-this.x)+abs(y-this.y) ==0) return false;
+    
+    //ライオン
+    if(this.name.equals("lion") && abs(x-this.x) <= 1 && abs(y-this.y) <=1) return true;
+    
+    //ひよこ
+    if(this.name.equals("hiyoko")){
+      if(this.team == 0 && x-this.x==1 && y-this.y==0) return true;
+      else if(this.team == 1 && this.x-x==1 && y-this.y==0) return true;
+    }
+    
+    //象
+    if(this.name.equals("zou") && abs(x-this.x) ==1 && abs(y-this.y) ==1) return true;
+    
+    //キリン
+    if(this.name.equals("kirin") && abs(x-this.x)+abs(y-this.y) ==1) return true;
+    
+    return false;
+  }
+  
+  /**
+  ** 対象の駒を取る(capture)ことができるか
+  **/
+  boolean canCapture(Koma koma){
+    if(this.team != koma.team) return true;
+    else return false;
+  }
 }
