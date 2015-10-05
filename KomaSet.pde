@@ -20,7 +20,7 @@ class KomaSet {
   
   Koma getKomaFromPlace(int x, int y){
     for(Koma k:komas){
-      if(x == k.getX() && y == k.getY()){
+      if(x == k.x && y == k.y){
         return k;
       }
     }
@@ -28,7 +28,7 @@ class KomaSet {
   }
   Koma getSelectedKoma(){
     for(Koma k:komas){
-      if(k.isSelected()){
+      if(k.selected==true){
         return k;
       }
     }

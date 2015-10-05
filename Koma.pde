@@ -30,7 +30,7 @@ class Koma {
   }
   
   /**
-  ** 自分自身を描画するコマンド
+  ** 自分自身（駒）を描画するコマンド
   **/
   void draw() {
     String komaImage = "";
@@ -43,45 +43,5 @@ class Koma {
     }
     PImage img = loadImage(komaImage);
     image(img, squareSize*this.x+2, this.y*squareSize+2, squareSize-4, squareSize-4);
-  }
-
-  String getName() {
-    return this.name;
-  }
-  int getX() {
-    return this.x;
-  }
-  void setX(int x) {
-    this.x = x;
-  }
-  int getY() {
-    return this.y;
-  }
-  void setY(int y) {
-    this.y = y;
-  }
-  int getTeam() {
-    return this.team;
-  }
-  void setTeam(int team) {
-    this.team = team;
-  }
-  boolean isCaptured() {
-    return this.captured;
-  }
-  void setCaptured(boolean captured) {
-    this.captured = captured;
-  }
-  boolean isActive() {
-    return this.active;
-  }
-  void setActive(boolean active) {
-    this.active = active;
-  }
-  boolean isSelected() {
-    return this.selected;
-  }
-  void setSelected(boolean selected) {
-    this.selected = selected;
   }
 }

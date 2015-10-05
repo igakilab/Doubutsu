@@ -39,8 +39,6 @@ class Banmen {
     popMatrix();
   }
   void drawKomas() {
-    String komaImage = "";
-    PImage img;
     pushMatrix();
     translate(squareSize, 0);
     for (Koma k : this.mySet.getKomas()) {
@@ -55,7 +53,7 @@ class Banmen {
       Koma koma = mySet.getKomaFromPlace(x-1, y);
       if (koma != null) {
         rect(x*squareSize, y*squareSize, squareSize, squareSize);
-        koma.setSelected(true);
+        koma.selected=true;
         selected = true;
         noLoop();
       }
@@ -64,11 +62,11 @@ class Banmen {
       if(koma != null){
         Koma koma2 = mySet.getKomaFromPlace(x-1,y);
         if(koma2 != null){//移動先に駒がある場合はその駒を取る
-          koma2.setCaptured(true);
+          koma2.captured=true;
         }
-        koma.setX(x-1);
-        koma.setY(y);
-        koma.setSelected(false);
+        koma.x = x-1;
+        koma.y = y;
+        koma.selected=false;
       }
       selected = false;
       loop();
