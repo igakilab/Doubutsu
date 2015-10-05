@@ -9,8 +9,8 @@ void setup() {
 
 void draw(){
   banmen.drawBaseBanmen();
-  banmen.drawMochiBanmen();
   banmen.drawKomas();
+  banmen.drawMochiKomas();
 }
 
 void mouseReleased(){

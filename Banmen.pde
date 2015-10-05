@@ -18,27 +18,11 @@ class Banmen { //<>//
           fill(#FFFFFF);
         }
         rect(squareSize*i, j*squareSize, squareSize, squareSize);
-        //this.drawKoma(banmen[i][j], i, j);
       }
     }
     popMatrix();
   }
-  void drawMochiBanmen() {
-    pushMatrix();
-    stroke(#FFFFFF);
-    //strokeWeight(2);
-    for (int i=0; i<2; i++) {
-      Koma[] cKomas = mySet.getCapturedKoma(i);
-      //println(cKomas.length);
-      for (int j=0; j<mochiHaba; j++) {
-        fill(#FFCCFF);
-        rect(squareSize*i, j*squareSize, squareSize, squareSize);
-      }
-      translate(baseYoko*squareSize, 0);
-    }
-    popMatrix();
-  }
-  void drawKomas() {
+  void drawKomas() { //<>//
     pushMatrix();
     translate(squareSize, 0);
     for (Koma k : this.mySet.getKomas()) {
@@ -46,12 +30,25 @@ class Banmen { //<>//
     }
     popMatrix();
   }
+  void drawMochiKomas() {
+    pushMatrix();
+    stroke(#FFFFFF);
+    //strokeWeight(2);
+    for (int i=0; i<2; i++) {
+      Koma[] cKomas = mySet.getCapturedKoma(i);
+      for(int j=0;j<cKomas.length;j++){
+        cKomas[j].drawCaptured(i,j);
+      }
+      translate(baseYoko*squareSize, 0);
+    }
+    popMatrix();
+  }
   void select(int x, int y) {
     if (!selected) {
-      fill(#FF0000, 100);
       println("selected x:" + x +" y:"+y);
       Koma koma = mySet.getKomaFromPlace(x-1, y);
       if (koma != null) {
+        fill(#FF0000, 100);
         rect(x*squareSize, y*squareSize, squareSize, squareSize);
         koma.selected=true;
         selected = true;
@@ -63,6 +60,7 @@ class Banmen { //<>//
         Koma koma2 = mySet.getKomaFromPlace(x-1, y);
         if (koma2 != null) {//移動先に駒がある場合はその駒を取る
           koma2.captured=true;
+          koma2.team = (koma2.team + 1) % 2;
         }
         koma.x = x-1;
         koma.y = y;

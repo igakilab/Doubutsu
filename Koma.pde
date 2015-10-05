@@ -30,7 +30,7 @@ class Koma {
   }
   
   /**
-  ** 自分自身（駒）を描画するコマンド
+  ** 自分自身（駒）を描画するメソッド
   **/
   void draw() {
     String komaImage = "";
@@ -43,5 +43,21 @@ class Koma {
     }
     PImage img = loadImage(komaImage);
     image(img, squareSize*this.x+2, this.y*squareSize+2, squareSize-4, squareSize-4);
+  }
+  
+  /**
+  ** 取られた自分自身（駒）を描画するメソッド
+  **/
+  void drawCaptured(int team, int index){
+    String komaImage = "";
+    if (this.team==0 && this.active && this.captured) {
+      komaImage = this.name+"A.png";
+    } else if (this.team==1 && this.active && this.captured) {
+      komaImage = this.name+"B.png";
+    } else {
+      return;
+    }
+    PImage img = loadImage(komaImage);
+    image(img, team*squareSize + 2, index*squareSize+2, squareSize-4, squareSize-4);
   }
 }
