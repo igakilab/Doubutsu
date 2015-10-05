@@ -1,5 +1,6 @@
 static int squareSize = 100; //<>//
 Banmen banmen;
+int turn = 0;
 boolean selected = false;
 KomaSet mySet = new KomaSet();
 void setup() {
@@ -11,6 +12,7 @@ void draw(){
   banmen.drawBaseBanmen();
   banmen.drawKomas();
   banmen.drawMochiKomas();
+  banmen.drawInfo();
 }
 
 void mouseReleased(){
