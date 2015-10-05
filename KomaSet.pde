@@ -20,7 +20,7 @@ class KomaSet {
   
   Koma getKomaFromPlace(int x, int y){
     for(Koma k:komas){
-      if(x == k.x && y == k.y){
+      if(x == k.x && y == k.y && k.active && !k.captured){
         return k;
       }
     }

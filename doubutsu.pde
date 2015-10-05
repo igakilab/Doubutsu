@@ -9,7 +9,7 @@ void setup() {
 
 void draw(){
   banmen.drawBaseBanmen();
-  banmen.drawBaseMochiBanmen();
+  banmen.drawMochiBanmen();
   banmen.drawKomas();
 }
 

@@ -1,4 +1,4 @@
-class Banmen {
+class Banmen { //<>//
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
@@ -23,16 +23,16 @@ class Banmen {
     }
     popMatrix();
   }
-  void drawBaseMochiBanmen() {
+  void drawMochiBanmen() {
     pushMatrix();
     stroke(#FFFFFF);
     //strokeWeight(2);
     for (int i=0; i<2; i++) {
-    Koma[] cKomas = mySet.getCapturedKoma(i);
+      Koma[] cKomas = mySet.getCapturedKoma(i);
+      //println(cKomas.length);
       for (int j=0; j<mochiHaba; j++) {
         fill(#FFCCFF);
         rect(squareSize*i, j*squareSize, squareSize, squareSize);
-        
       }
       translate(baseYoko*squareSize, 0);
     }
@@ -59,9 +59,9 @@ class Banmen {
       }
     } else {
       Koma koma = mySet.getSelectedKoma();
-      if(koma != null){
-        Koma koma2 = mySet.getKomaFromPlace(x-1,y);
-        if(koma2 != null){//移動先に駒がある場合はその駒を取る
+      if (koma != null) {
+        Koma koma2 = mySet.getKomaFromPlace(x-1, y);
+        if (koma2 != null) {//移動先に駒がある場合はその駒を取る
           koma2.captured=true;
         }
         koma.x = x-1;
