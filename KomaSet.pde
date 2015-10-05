@@ -34,5 +34,15 @@ class KomaSet {
     }
     return null;
   }
+  Koma[] getCapturedKoma(int team){
+    ArrayList<Koma> cKomas = new ArrayList<Koma>();
+    for(Koma k:komas){
+      if(k.captured && k.team==team){
+        cKomas.add(k);
+      }
+    }
+        
+    return cKomas.toArray(new Koma[0]);
+  }
   
 }

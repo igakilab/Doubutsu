@@ -28,29 +28,23 @@ class Banmen {
     stroke(#FFFFFF);
     //strokeWeight(2);
     for (int i=0; i<2; i++) {
+    Koma[] cKomas = mySet.getCapturedKoma(i);
       for (int j=0; j<mochiHaba; j++) {
         fill(#FFCCFF);
         rect(squareSize*i, j*squareSize, squareSize, squareSize);
+        
       }
       translate(baseYoko*squareSize, 0);
     }
     popMatrix();
   }
-  void drawKoma() {
+  void drawKomas() {
     String komaImage = "";
     PImage img;
     pushMatrix();
     translate(squareSize, 0);
     for (Koma k : this.mySet.getKomas()) {
-      if (k.getTeam()==0 && k.isActive() && !k.isCaptured()) {
-        komaImage = k.getName()+"A.png";
-      } else if(k.getTeam() ==1 && k.isActive() && !k.isCaptured()) {
-        komaImage = k.getName()+"B.png";
-      }else{
-        continue;
-      }
-      img = loadImage(komaImage);
-      image(img, squareSize*k.getX()+2, k.getY()*squareSize+2, squareSize-4, squareSize-4);
+      k.draw();
     }
     popMatrix();
   }
