@@ -46,9 +46,9 @@ class Koma {
   }
 
   /**
-   ** 取られた自分自身（駒）を持ち駒表示領域に描画するメソッド
+   ** 取られた自分自身（駒）を持ち駒表示領域の指定箇所(index)に描画するメソッド
    **/
-  void drawCaptured(int team, int index) {
+  void drawCaptured(int index) {
     String komaImage = "";
     if (this.team==0 && this.active && this.captured) {
       komaImage = this.name+"A.png";
@@ -59,14 +59,19 @@ class Koma {
     }
     PImage img = loadImage(komaImage);
     image(img, 2, index*squareSize+2, squareSize-4, squareSize-4);
+    this.x=0;
+    this.y=index;
   }
 
   /**
    ** 対象の駒が(x,y)に移動できるかどうか
    **/
   boolean canMove(int x, int y) {
-    println("x:"+x+" y:"+y+" this.x:"+this.x+" this.y:"+this.y);
-    if (x<0 || x>3 || y<0 || y>2) return false;
+    //println("x:"+x+" y:"+y+" this.x:"+this.x+" this.y:"+this.y);
+    
+    //持ち駒あるいは範囲外への移動の場合
+    if(this.captured) return true;
+    else if (x<0 || x>3 || y<0 || y>2) return false;
 
     if (abs(x-this.x)+abs(y-this.y) ==0) return false;
 

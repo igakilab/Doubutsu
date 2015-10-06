@@ -42,9 +42,9 @@ class Banmen { //<>// //<>// //<>//
     stroke(#FFFFFF);
     //strokeWeight(2);
     for (int i=0; i<2; i++) {
-      Koma[] cKomas = mySet.getCapturedKoma(i);
+      Koma[] cKomas = mySet.getCapturedKoma(i); //<>//
       for (int j=0; j<cKomas.length; j++) {
-        cKomas[j].drawCaptured(i, j);
+        cKomas[j].drawCaptured(j);
       }
       translate((baseYoko+1)*squareSize, 0);
     }
@@ -76,6 +76,10 @@ class Banmen { //<>// //<>// //<>//
     if (!selected) {
       println("selected x:" + x +" y:"+y);
       Koma koma = mySet.getKomaFromPlace(x-1, y);
+      println("turn:"+turn + " koma.name:" + koma.name +" team:"+koma.team);
+      print("[3]:" + mySet.getKomas()[3].name+mySet.getKomas()[3].team);
+      print(" [7]:" + mySet.getKomas()[7].name+mySet.getKomas()[7].team);
+      println(" ");
       if (koma != null && koma.team == turn) {
         fill(#FF0000, 100);
         rect(x*squareSize, y*squareSize, squareSize, squareSize);
