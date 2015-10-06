@@ -83,7 +83,7 @@ class KomaSet {
    ** 駒の移動
    **/
   void move(Koma k, int x, int y) {
-    if (k.name.equals("hiyoko") && ( k.team==0 && x==3 || k.team==1 && x==0 )) {
+    if (k.name.equals("hiyoko") && !k.captured && ( k.team==0 && x==3 || k.team==1 && x==0 )) {
       Koma niwatori = this.getKomaByNameAndTeam("niwatori", k.team);
       k.active = false;
       niwatori.active = true;

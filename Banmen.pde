@@ -97,8 +97,8 @@ class Banmen { //<>// //<>// //<>//
             mySet.move(koma, x-1, y);
             turn = (turn+1)%2;
           } else if (koma2==null) {
-            koma.captured=false;
             mySet.move(koma, x-1, y);
+            koma.captured=false;
             turn = (turn+1)%2;
           }
         }
