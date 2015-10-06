@@ -13,36 +13,76 @@ class KomaSet {
     komas[8] = new Koma("niwatori", 1, 1, 0, false);
     komas[9] = new Koma("niwatori", 2, 1, 1, false);
   }
-  
-  Koma[] getKomas(){
+
+  Koma[] getKomas() {
     return this.komas;
   }
-  
-  Koma getKomaFromPlace(int x, int y){
-    for(Koma k:komas){
-      if(x == k.x && y == k.y && k.active && !k.captured){
+
+  Koma getKomaFromPlace(int x, int y) {
+    for (Koma k : komas) {
+      if (x == k.x && y == k.y && k.active && !k.captured) {
         return k;
       }
     }
     return null;
   }
-  Koma getSelectedKoma(){
-    for(Koma k:komas){
-      if(k.selected==true){
+  Koma getSelectedKoma() {
+    for (Koma k : komas) {
+      if (k.selected==true) {
         return k;
       }
     }
     return null;
   }
-  Koma[] getCapturedKoma(int team){
+  Koma[] getCapturedKoma(int team) {
     ArrayList<Koma> cKomas = new ArrayList<Koma>();
-    for(Koma k:komas){
-      if(k.captured && k.team==team){
+    for (Koma k : komas) {
+      if (k.captured && k.team==team) {
         cKomas.add(k);
       }
     }
-        
+
     return cKomas.toArray(new Koma[0]);
   }
-  
+  Koma getKomaByNameAndTeam(String name, int team) {
+    for (Koma k : komas) {
+      if (k.name.equals(name) && k.team==team) {
+        return k;
+      }
+    }
+    return null;
+  }
+  /**
+   ** 駒の取得(capture)及び勝利条件（ライオンの取得）確認
+   **/
+  void capture(Koma toru, Koma torareru) {
+    if (torareru.name.equals("niwatori")) {
+      torareru.active=false;
+      Koma hiyoko = this.getKomaByNameAndTeam("hiyoko", torareru.team);
+      hiyoko.active=true;
+      hiyoko.captured=true;
+      hiyoko.team = (hiyoko.team+1)%2;
+    } else if (torareru.name.equals("lion")) {
+      win=toru.team;
+    } else {
+      torareru.captured=true;
+      torareru.team = (torareru.team+1)%2;
+    }
+  }
+
+  /**
+   ** 駒の移動
+   **/
+  void move(Koma k, int x, int y) {
+    if (k.name.equals("hiyoko") && ( k.team==0 && x==3 || k.team==1 && x==0 )) {
+      Koma niwatori = this.getKomaByNameAndTeam("niwatori", k.team);
+      k.active = false;
+      niwatori.active = true;
+      niwatori.x = x;
+      niwatori.y = y;
+    } else {
+      k.x = x;
+      k.y = y;
+    }
+  }
 }
