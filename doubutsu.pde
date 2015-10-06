@@ -1,6 +1,7 @@
 static int squareSize = 100; //<>//
 Banmen banmen;
 int turn = 0;
+int win = -1;//0になるとLeftの勝ち，1になるとRightの勝ち
 boolean selected = false;
 KomaSet mySet = new KomaSet();
 void setup() {

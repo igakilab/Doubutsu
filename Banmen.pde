@@ -43,14 +43,18 @@ class Banmen { //<>// //<>//
     }
     popMatrix();
   }
-  void drawInfo(){
+  void drawInfo() {
     fill(#FFFFFF);
     rect(squareSize, 3*squareSize, baseYoko*squareSize, squareSize);
     fill(#000000);
     textSize(20);
-    if(turn==0){
+    if (win==0) {
+      text("Left Win!!", 1.5*squareSize, 3.5*squareSize);
+    } else if (win==1) {
+      text("Right Win!!", 3.5*squareSize, 3.5*squareSize);
+    } else if (turn==0) {
       text("<- Left Turn", 1.5*squareSize, 3.5*squareSize);
-    }else{
+    } else {
       text("Right Turn ->", 3.5*squareSize, 3.5*squareSize);
     }
   }
@@ -76,14 +80,11 @@ class Banmen { //<>// //<>//
         if (koma.canMove(x-1, y)) {
           Koma koma2 = mySet.getKomaFromPlace(x-1, y);
           if (koma2 != null && koma.canCapture(koma2)) {
-            koma2.captured=true;
-            koma2.team = (koma2.team + 1)%2;
-            koma.x=x-1;
-            koma.y=y;
+            mySet.capture(koma, koma2);
+            mySet.move(koma, x-1, y);
             turn = (turn+1)%2;
           } else if (koma2==null) {
-            koma.x=x-1;
-            koma.y=y;
+            mySet.move(koma, x-1, y);
             turn = (turn+1)%2;
           }
         }
