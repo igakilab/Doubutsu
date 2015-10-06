@@ -1,11 +1,8 @@
-class Banmen { //<>// //<>//
+class Banmen { //<>// //<>// //<>//
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
-  KomaSet mySet;
-  Banmen(KomaSet ks) {
-    this.mySet = ks;
-  }
+  //KomaSet mySet;
 
   void drawBaseBanmen() {
     pushMatrix();
@@ -22,10 +19,21 @@ class Banmen { //<>// //<>//
     }
     popMatrix();
   }
+  void drawBaseMochiBanmen(){
+    pushMatrix();
+    fill(#CCCCCC);
+    for (int i=0; i<2; i++) {
+      for (int j=0; j<this.mochiHaba; j++) {
+        rect(0, j*squareSize, squareSize, squareSize);
+      }
+      translate((baseYoko+1)*squareSize, 0);
+    }
+    popMatrix();
+  }
   void drawKomas() {
     pushMatrix();
     translate(squareSize, 0);
-    for (Koma k : this.mySet.getKomas()) {
+    for (Koma k : mySet.getKomas()) {
       k.draw();
     }
     popMatrix();
@@ -50,8 +58,10 @@ class Banmen { //<>// //<>//
     textSize(20);
     if (win==0) {
       text("Left Win!!", 1.5*squareSize, 3.5*squareSize);
+      text("Retry?", 2.8*squareSize, 3.8*squareSize);
     } else if (win==1) {
       text("Right Win!!", 3.5*squareSize, 3.5*squareSize);
+      text("Retry?", 2.5*squareSize, 3.8*squareSize);
     } else if (turn==0) {
       text("<- Left Turn", 1.5*squareSize, 3.5*squareSize);
     } else {
