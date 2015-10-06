@@ -44,9 +44,15 @@ class Banmen { //<>// //<>//
     popMatrix();
   }
   void drawInfo(){
-    fill(0);
+    fill(#FFFFFF);
+    rect(squareSize, 3*squareSize, baseYoko*squareSize, squareSize);
+    fill(#000000);
     textSize(20);
-    text("Turn", 1.5*squareSize, 3.5*squareSize);
+    if(turn==0){
+      text("<- Left Turn", 1.5*squareSize, 3.5*squareSize);
+    }else{
+      text("Right Turn ->", 3.5*squareSize, 3.5*squareSize);
+    }
   }
 
   /**
