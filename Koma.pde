@@ -46,7 +46,7 @@ class Koma {
   }
 
   /**
-   ** 取られた自分自身（駒）を描画するメソッド
+   ** 取られた自分自身（駒）を持ち駒表示領域に描画するメソッド
    **/
   void drawCaptured(int team, int index) {
     String komaImage = "";
@@ -58,7 +58,7 @@ class Koma {
       return;
     }
     PImage img = loadImage(komaImage);
-    image(img, team*squareSize + 2, index*squareSize+2, squareSize-4, squareSize-4);
+    image(img, 2, index*squareSize+2, squareSize-4, squareSize-4);
   }
 
   /**

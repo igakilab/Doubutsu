@@ -47,7 +47,7 @@ class Banmen { //<>// //<>// //<>//
       for (int j=0; j<cKomas.length; j++) {
         cKomas[j].drawCaptured(i, j);
       }
-      translate(baseYoko*squareSize, 0);
+      translate((baseYoko+1)*squareSize, 0);
     }
     popMatrix();
   }
