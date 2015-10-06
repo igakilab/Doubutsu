@@ -103,7 +103,8 @@ class Koma {
    ** 対象の駒を取る(capture)ことができるか
    **/
   boolean canCapture(Koma koma) {
-    if (this.team != koma.team) return true;
+    if(this.captured) return false;
+    else if (this.team != koma.team) return true;
     else return false;
   }
 }

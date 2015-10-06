@@ -23,7 +23,7 @@ void mouseReleased(){
   int y = mouseY/squareSize;
   if(win>=0 && y>=3 && x>=2 && x<=3){
     this.reset();
-  }else{
+  }else if(win<0){
     banmen.select(x,y);
   }
 }

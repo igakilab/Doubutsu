@@ -76,7 +76,7 @@ class Banmen { //<>// //<>// //<>//
     if (!selected) {
       println("selected x:" + x +" y:"+y);
       Koma koma = mySet.getKomaFromPlace(x-1, y);
-      println("turn:"+turn + " koma.name:" + koma.name +" team:"+koma.team);
+      //println("turn:"+turn + " koma.name:" + koma.name +" team:"+koma.team);
       print("[3]:" + mySet.getKomas()[3].name+mySet.getKomas()[3].team);
       print(" [7]:" + mySet.getKomas()[7].name+mySet.getKomas()[7].team);
       println(" ");
@@ -97,6 +97,7 @@ class Banmen { //<>// //<>// //<>//
             mySet.move(koma, x-1, y);
             turn = (turn+1)%2;
           } else if (koma2==null) {
+            koma.captured=false;
             mySet.move(koma, x-1, y);
             turn = (turn+1)%2;
           }
