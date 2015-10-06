@@ -22,6 +22,12 @@ class KomaSet {
     for (Koma k : komas) {
       if (x == k.x && y == k.y && k.active && !k.captured) {
         return k;
+      }else if(x==-1 && k.captured && k.team==0 && k.y==y){
+        println(k.name+k.team);
+        return k;
+      }else if(x==4 && k.captured && k.team==1 && k.y==y){
+        println(k.name+k.team);
+        return k;
       }
     }
     return null;
@@ -38,6 +44,7 @@ class KomaSet {
     ArrayList<Koma> cKomas = new ArrayList<Koma>();
     for (Koma k : komas) {
       if (k.captured && k.team==team) {
+        //print(" Captured:"+k.name+" team:"+k.team);
         cKomas.add(k);
       }
     }
@@ -66,7 +73,9 @@ class KomaSet {
       win=toru.team;
     } else {
       torareru.captured=true;
+      print(torareru.name+" team:"+torareru.team);
       torareru.team = (torareru.team+1)%2;
+      println(" to:"+torareru.team);
     }
   }
 
