@@ -22,10 +22,10 @@ class KomaSet {
     for (Koma k : komas) {
       if (x == k.x && y == k.y && k.active && !k.captured) {
         return k;
-      }else if(x==-1 && k.captured && k.team==0 && k.y==y){
+      } else if (x==-1 && k.captured && k.team==0 && k.y==y) {
         println(k.name+k.team);
         return k;
-      }else if(x==4 && k.captured && k.team==1 && k.y==y){
+      } else if (x==4 && k.captured && k.team==1 && k.y==y) {
         println(k.name+k.team);
         return k;
       }
@@ -80,7 +80,7 @@ class KomaSet {
   }
 
   /**
-   ** 駒の移動
+   ** 駒の移動及び勝利条件（ライオンの相手陣地入場）確認
    **/
   void move(Koma k, int x, int y) {
     if (k.name.equals("hiyoko") && !k.captured && ( k.team==0 && x==3 || k.team==1 && x==0 )) {
@@ -89,6 +89,10 @@ class KomaSet {
       niwatori.active = true;
       niwatori.x = x;
       niwatori.y = y;
+    } else if (k.name.equals("lion") && ((k.team==0 && x==3) || (k.team==1 && x==0))) {
+      win = k.team;
+      k.x=x;
+      k.y=y;
     } else {
       k.x = x;
       k.y = y;
