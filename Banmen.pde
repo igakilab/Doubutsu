@@ -2,7 +2,6 @@ class Banmen { //<>// //<>// //<>//
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
-  //KomaSet mySet;
 
   void drawBaseBanmen() {
     pushMatrix();
