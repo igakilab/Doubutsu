@@ -46,7 +46,7 @@ class KomaSet {
     }
     return null;
   }
-  
+
   Koma getSelectedKoma() {
     for (Koma k : komas) {
       if (k.selected==true) {
@@ -115,11 +115,19 @@ class KomaSet {
     }
   }
   /**
-  ** 勝利条件を満たすために相手の陣地にライオンが進行できるかをチェックする
-  ** x,yの周囲8コマにx,yに有る駒を取得可能な敵チームの駒が無いかを確認する
-  **/
-  boolean canLionMove(Koma lion, int x, int y){
-    
-    return false;
+   ** 勝利条件を満たすために相手の陣地にライオンが進行できるかをチェックする
+   ** x,yの周囲8コマにx,yに有る駒を取得可能な敵チームの駒が無いかを確認する
+   **/
+  boolean canLionMove(Koma lion, int x, int y) {
+    ArrayList<Koma> enemies = new ArrayList<Koma>();
+    int[][] direction = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {0, -1}, {1, 0}, {1, 1}, {1, -1}};
+    for (int[] d : direction) {
+      Koma enemy = this.getKomaFromPlaceByTeam((lion.team+1)%2, x+d[0], y+d[1]); 
+      if (enemy!=null) enemies.add(enemy);
+    }
+    for (Koma k : enemies) {
+      if (k.canMove(x, y)) return false;
+    }
+    return true;
   }
 }

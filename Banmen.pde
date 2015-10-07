@@ -1,4 +1,4 @@
-class Banmen { //<>// //<>// //<>//
+class Banmen { //<>// //<>// //<>// //<>//
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
@@ -18,7 +18,7 @@ class Banmen { //<>// //<>// //<>//
     }
     popMatrix();
   }
-  void drawBaseMochiBanmen(){
+  void drawBaseMochiBanmen() {
     pushMatrix();
     fill(#CCCCCC);
     for (int i=0; i<2; i++) {
@@ -42,7 +42,7 @@ class Banmen { //<>// //<>// //<>//
     stroke(#FFFFFF);
     //strokeWeight(2);
     for (int i=0; i<2; i++) {
-      Koma[] cKomas = mySet.getCapturedKoma(i); //<>//
+      Koma[] cKomas = mySet.getCapturedKoma(i);
       for (int j=0; j<cKomas.length; j++) {
         cKomas[j].drawCaptured(j);
       }
@@ -90,7 +90,9 @@ class Banmen { //<>// //<>// //<>//
     } else {
       Koma koma = mySet.getSelectedKoma();
       if (koma != null) {
-        if (koma.canMove(x-1, y)) {
+        if (koma.name.equals("lion") && ((koma.team==0 && (x-1)==3) || (koma.team==1 && (x-1)==0))) {
+          if (mySet.canLionMove(koma, x-1, y)) mySet.move(koma, x-1, y);
+        } else if (koma.canMove(x-1, y)) {
           Koma koma2 = mySet.getKomaFromPlace(x-1, y);
           if (koma2 != null && koma.canCapture(koma2)) {
             mySet.capture(koma, koma2);
