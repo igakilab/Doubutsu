@@ -32,6 +32,21 @@ class KomaSet {
     }
     return null;
   }
+  Koma getKomaFromPlaceByTeam(int team, int x, int y) {
+    for (Koma k : komas) {
+      if (k.team==team && x == k.x && y == k.y && k.active && !k.captured) {
+        return k;
+      } else if (k.team==team && x==-1 && k.captured && k.team==0 && k.y==y) {
+        println(k.name+k.team);
+        return k;
+      } else if (k.team==team && x==4 && k.captured && k.team==1 && k.y==y) {
+        println(k.name+k.team);
+        return k;
+      }
+    }
+    return null;
+  }
+  
   Koma getSelectedKoma() {
     for (Koma k : komas) {
       if (k.selected==true) {
@@ -51,9 +66,9 @@ class KomaSet {
 
     return cKomas.toArray(new Koma[0]);
   }
-  Koma getKomaByNameAndTeam(String name, int team) {
+  Koma getNonActiveKomaByName(String name) {
     for (Koma k : komas) {
-      if (k.name.equals(name) && k.team==team) {
+      if (k.name.equals(name) && !k.active) {
         return k;
       }
     }
@@ -65,10 +80,10 @@ class KomaSet {
   void capture(Koma toru, Koma torareru) {
     if (torareru.name.equals("niwatori")) {
       torareru.active=false;
-      Koma hiyoko = this.getKomaByNameAndTeam("hiyoko", torareru.team);
+      Koma hiyoko = this.getNonActiveKomaByName("hiyoko");
       hiyoko.active=true;
       hiyoko.captured=true;
-      hiyoko.team = (hiyoko.team+1)%2;
+      hiyoko.team = (torareru.team+1)%2;
     } else if (torareru.name.equals("lion")) {
       win=toru.team;
     } else {
@@ -84,11 +99,12 @@ class KomaSet {
    **/
   void move(Koma k, int x, int y) {
     if (k.name.equals("hiyoko") && !k.captured && ( k.team==0 && x==3 || k.team==1 && x==0 )) {
-      Koma niwatori = this.getKomaByNameAndTeam("niwatori", k.team);
+      Koma niwatori = this.getNonActiveKomaByName("niwatori");
       k.active = false;
       niwatori.active = true;
       niwatori.x = x;
       niwatori.y = y;
+      niwatori.team=k.team;
     } else if (k.name.equals("lion") && ((k.team==0 && x==3) || (k.team==1 && x==0))) {
       win = k.team;
       k.x=x;
@@ -97,5 +113,13 @@ class KomaSet {
       k.x = x;
       k.y = y;
     }
+  }
+  /**
+  ** 勝利条件を満たすために相手の陣地にライオンが進行できるかをチェックする
+  ** x,yの周囲8コマにx,yに有る駒を取得可能な敵チームの駒が無いかを確認する
+  **/
+  boolean canLionMove(Koma lion, int x, int y){
+    
+    return false;
   }
 }
