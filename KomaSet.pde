@@ -20,12 +20,12 @@ class KomaSet {
 
   Koma getKomaFromPlace(int x, int y) {
     for (Koma k : komas) {
-      if (x == k.x && y == k.y && k.active && !k.captured) {
+      if (x == k.x && y == k.y && k.kStat.exists()) {
         return k;
-      } else if (x==-1 && k.captured && k.team==0 && k.y==y) {
+      } else if (x==-1 && k.kStat.isCaptured() && k.team==0 && k.y==y) {
         println(k.name+k.team);
         return k;
-      } else if (x==4 && k.captured && k.team==1 && k.y==y) {
+      } else if (x==4 && k.kStat.isCaptured() && k.team==1 && k.y==y) {
         println(k.name+k.team);
         return k;
       }
@@ -34,12 +34,12 @@ class KomaSet {
   }
   Koma getKomaFromPlaceByTeam(int team, int x, int y) {
     for (Koma k : komas) {
-      if (k.team==team && x == k.x && y == k.y && k.active && !k.captured) {
+      if (k.team==team && x == k.x && y == k.y && k.kStat.exists()) {
         return k;
-      } else if (k.team==team && x==-1 && k.captured && k.team==0 && k.y==y) {
+      } else if (k.team==team && x==-1 && k.kStat.isCaptured() && k.team==0 && k.y==y) {
         println(k.name+k.team);
         return k;
-      } else if (k.team==team && x==4 && k.captured && k.team==1 && k.y==y) {
+      } else if (k.team==team && x==4 && k.kStat.isCaptured() && k.team==1 && k.y==y) {
         println(k.name+k.team);
         return k;
       }
@@ -49,7 +49,7 @@ class KomaSet {
 
   Koma getSelectedKoma() {
     for (Koma k : komas) {
-      if (k.selected==true) {
+      if (k.kStat.selected==true) {
         return k;
       }
     }
@@ -58,7 +58,7 @@ class KomaSet {
   Koma[] getCapturedKoma(int team) {
     ArrayList<Koma> cKomas = new ArrayList<Koma>();
     for (Koma k : komas) {
-      if (k.captured && k.team==team) {
+      if (k.kStat.isCaptured() && k.team==team) {
         //print(" Captured:"+k.name+" team:"+k.team);
         cKomas.add(k);
       }
@@ -68,7 +68,7 @@ class KomaSet {
   }
   Koma getNonActiveKomaByName(String name) {
     for (Koma k : komas) {
-      if (k.name.equals(name) && !k.active) {
+      if (k.name.equals(name) && !k.kStat.active) {
         return k;
       }
     }
@@ -79,15 +79,15 @@ class KomaSet {
    **/
   void capture(Koma toru, Koma torareru) {
     if (torareru.name.equals("niwatori")) {
-      torareru.active=false;
+      torareru.kStat.active=false;
       Koma hiyoko = this.getNonActiveKomaByName("hiyoko");
-      hiyoko.active=true;
-      hiyoko.captured=true;
+      hiyoko.kStat.active=true;
+      hiyoko.kStat.captured=true;
       hiyoko.team = (torareru.team+1)%2;
     } else if (torareru.name.equals("lion")) {
       win=toru.team;
     } else {
-      torareru.captured=true;
+      torareru.kStat.captured=true;
       print(torareru.name+" team:"+torareru.team);
       torareru.team = (torareru.team+1)%2;
       println(" to:"+torareru.team);
@@ -98,10 +98,10 @@ class KomaSet {
    ** 駒の移動及び勝利条件（ライオンの相手陣地入場）確認
    **/
   void move(Koma k, int x, int y) {
-    if (k.name.equals("hiyoko") && !k.captured && ( k.team==0 && x==3 || k.team==1 && x==0 )) {
+    if (k.name.equals("hiyoko") && k.kStat.exists() && ( k.team==0 && x==3 || k.team==1 && x==0 )) {
       Koma niwatori = this.getNonActiveKomaByName("niwatori");
-      k.active = false;
-      niwatori.active = true;
+      k.kStat.active = false;
+      niwatori.kStat.active = true;
       niwatori.x = x;
       niwatori.y = y;
       niwatori.team=k.team;

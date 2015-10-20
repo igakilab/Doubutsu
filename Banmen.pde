@@ -1,4 +1,4 @@
-class Banmen { //<>// //<>// //<>// //<>//
+class Banmen { //<>// //<>// //<>// //<>// //<>//
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
@@ -83,7 +83,7 @@ class Banmen { //<>// //<>// //<>// //<>//
       if (koma != null && koma.team == turn) {
         fill(#FF0000, 100);
         rect(x*squareSize, y*squareSize, squareSize, squareSize);
-        koma.selected=true;
+        koma.kStat.selected=true;
         selected = true;
         noLoop();
       }
@@ -100,11 +100,11 @@ class Banmen { //<>// //<>// //<>// //<>//
             turn = (turn+1)%2;
           } else if (koma2==null) {
             mySet.move(koma, x-1, y);
-            koma.captured=false;
+            koma.kStat.captured=false;
             turn = (turn+1)%2;
           }
         }
-        koma.selected=false;
+        koma.kStat.selected=false;
       }
       selected = false;
       loop();

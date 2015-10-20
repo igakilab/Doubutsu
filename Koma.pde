@@ -15,18 +15,20 @@ class Koma {
   int x;
   int y;
   int team;//0 or 1
-  boolean captured;
-  boolean active;
-  boolean selected;
+  KomaStatus kStat;
+  //boolean captured;
+  //boolean active;
+  //boolean selected;
 
   Koma(String name, int x, int y, int team, boolean active) {
     this.name = name;
     this.x = x;
     this.y = y;
     this.team = team;
-    this.captured = false;
-    this.active = active;
-    this.selected = false;
+    kStat = new KomaStatus(active);
+    //this.captured = false;
+    //this.active = active;
+    //this.selected = false;
   }
 
   /**
@@ -34,9 +36,9 @@ class Koma {
    **/
   void draw() {
     String komaImage = "";
-    if (this.team==0 && this.active && !this.captured) {
+    if (this.team==0 && kStat.exists()) {
       komaImage = this.name+"A.png";
-    } else if (this.team==1 && this.active && !this.captured) {
+    } else if (this.team==1 && kStat.exists()) {
       komaImage = this.name+"B.png";
     } else {
       return;
@@ -50,9 +52,9 @@ class Koma {
    **/
   void drawCaptured(int index) {
     String komaImage = "";
-    if (this.team==0 && this.active && this.captured) {
+    if (this.team==0 && kStat.isCaptured()) {
       komaImage = this.name+"A.png";
-    } else if (this.team==1 && this.active && this.captured) {
+    } else if (this.team==1 && kStat.isCaptured()) {
       komaImage = this.name+"B.png";
     } else {
       return;
@@ -71,7 +73,7 @@ class Koma {
     
     //範囲外への移動の場合は無条件でダメ．範囲内であれば持ち駒はどこにでも移動可能
     if (x<0 || x>3 || y<0 || y>2) return false;
-    else if(this.captured) return true;
+    else if(this.kStat.isCaptured()) return true;
 
     if (abs(x-this.x)+abs(y-this.y) ==0) return false;
 
@@ -103,7 +105,7 @@ class Koma {
    ** 対象の駒を取る(capture)ことができるか
    **/
   boolean canCapture(Koma koma) {
-    if(this.captured) return false;
+    if(this.kStat.isCaptured()) return false;
     else if (this.team != koma.team) return true;
     else return false;
   }
