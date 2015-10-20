@@ -1,4 +1,4 @@
-class Banmen { //<>// //<>// //<>// //<>// //<>//
+class Banmen { //<>//
   final int baseYoko = 4;
   final int baseTate = 3;
   final int mochiHaba = 4;
@@ -9,10 +9,9 @@ class Banmen { //<>// //<>// //<>// //<>// //<>//
     noStroke();
     for (int i=0; i<baseYoko; i++) {
       for (int j=0; j<baseTate; j++) {
-        fill(#000000);
-        if ( ((i+j) % 2) == 1) {
-          fill(#FFFFFF);
-        }
+        fill(#ffffc5);
+        if(i==0) fill(#c5ffc5);
+        else if(i==baseYoko-1) fill(#c5ffff);
         rect(squareSize*i, j*squareSize, squareSize, squareSize);
       }
     }
@@ -90,7 +89,7 @@ class Banmen { //<>// //<>// //<>// //<>// //<>//
     } else {
       Koma koma = mySet.getSelectedKoma();
       if (koma != null) {
-        if (koma.name.equals("lion") && ((koma.team==0 && (x-1)==3) || (koma.team==1 && (x-1)==0))) {
+        if (koma.name.equals("lion") && ((koma.team==0 && (x-1)==3) || (koma.team==1 && (x-1)==0)) && koma.canMove(x-1, y)) {
           if (mySet.canLionMove(koma, x-1, y)) mySet.move(koma, x-1, y);
         } else if (koma.canMove(x-1, y)) {
           Koma koma2 = mySet.getKomaFromPlace(x-1, y);

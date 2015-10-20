@@ -32,6 +32,7 @@ class KomaSet {
     }
     return null;
   }
+  //@Deprecated
   Koma getKomaFromPlaceByTeam(int team, int x, int y) {
     for (Koma k : komas) {
       if (k.team==team && x == k.x && y == k.y && k.kStat.exists()) {
@@ -41,6 +42,15 @@ class KomaSet {
         return k;
       } else if (k.team==team && x==4 && k.kStat.isCaptured() && k.team==1 && k.y==y) {
         println(k.name+k.team);
+        return k;
+      }
+    }
+    return null;
+  }
+
+  Koma getKomaFromBaseBoardByTeam(int team, int x, int y) {
+    for (Koma k : komas) {
+      if (k.team==team && x == k.x && y == k.y && k.kStat.exists()) {
         return k;
       }
     }
@@ -122,11 +132,14 @@ class KomaSet {
     ArrayList<Koma> enemies = new ArrayList<Koma>();
     int[][] direction = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {0, -1}, {1, 0}, {1, 1}, {1, -1}};
     for (int[] d : direction) {
-      Koma enemy = this.getKomaFromPlaceByTeam((lion.team+1)%2, x+d[0], y+d[1]); 
+      Koma enemy = this.getKomaFromBaseBoardByTeam((lion.team+1)%2, x+d[0], y+d[1]); 
       if (enemy!=null) enemies.add(enemy);
     }
     for (Koma k : enemies) {
-      if (k.canMove(x, y)) return false;
+      if (k.canMove(x, y)) {
+        println(k.name+" can get lion");
+        return false;
+      }
     }
     return true;
   }
