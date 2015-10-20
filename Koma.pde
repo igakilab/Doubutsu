@@ -69,9 +69,9 @@ class Koma {
   boolean canMove(int x, int y) {
     //println("x:"+x+" y:"+y+" this.x:"+this.x+" this.y:"+this.y);
     
-    //持ち駒あるいは範囲外への移動の場合
-    if(this.captured) return true;
-    else if (x<0 || x>3 || y<0 || y>2) return false;
+    //範囲外への移動の場合は無条件でダメ．範囲内であれば持ち駒はどこにでも移動可能
+    if (x<0 || x>3 || y<0 || y>2) return false;
+    else if(this.captured) return true;
 
     if (abs(x-this.x)+abs(y-this.y) ==0) return false;
 
