@@ -4,6 +4,7 @@ int turn = 0;
 int win = -1;//0になるとLeftの勝ち，1になるとRightの勝ち
 boolean selected = false;
 KomaSet mySet;
+
 void setup() {
   surface.setSize(6*squareSize, 4*squareSize);
   mySet = new KomaSet();
