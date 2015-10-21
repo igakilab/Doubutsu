@@ -44,7 +44,7 @@ class Koma {
       return;
     }
     PImage img = loadImage(komaImage);
-    image(img, squareSize*this.x+2, this.y*squareSize+2, squareSize-4, squareSize-4);
+    image(img, board.squareSize*this.x+2, this.y*board.squareSize+2, board.squareSize-4, board.squareSize-4);
   }
 
   /**
@@ -60,7 +60,7 @@ class Koma {
       return;
     }
     PImage img = loadImage(komaImage);
-    image(img, 2, index*squareSize+2, squareSize-4, squareSize-4);
+    image(img, 2, index*board.squareSize+2, board.squareSize-4, board.squareSize-4);
     this.x=0;
     this.y=index;
   }

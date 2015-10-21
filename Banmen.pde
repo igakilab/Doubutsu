@@ -3,34 +3,9 @@ class Banmen { //<>//
   final int baseTate = 3;
   final int mochiHaba = 4;
 
-  void drawBaseBanmen() {
-    pushMatrix();
-    translate(squareSize, 0);
-    noStroke();
-    for (int i=0; i<baseYoko; i++) {
-      for (int j=0; j<baseTate; j++) {
-        fill(#ffffc5);
-        if(i==0) fill(#c5ffc5);
-        else if(i==baseYoko-1) fill(#c5ffff);
-        rect(squareSize*i, j*squareSize, squareSize, squareSize);
-      }
-    }
-    popMatrix();
-  }
-  void drawBaseMochiBanmen() {
-    pushMatrix();
-    fill(#CCCCCC);
-    for (int i=0; i<2; i++) {
-      for (int j=0; j<this.mochiHaba; j++) {
-        rect(0, j*squareSize, squareSize, squareSize);
-      }
-      translate((baseYoko+1)*squareSize, 0);
-    }
-    popMatrix();
-  }
   void drawKomas() {
     pushMatrix();
-    translate(squareSize, 0);
+    translate(board.squareSize, 0);
     for (Koma k : mySet.getKomas()) {
       k.draw();
     }
@@ -45,25 +20,25 @@ class Banmen { //<>//
       for (int j=0; j<cKomas.length; j++) {
         cKomas[j].drawCaptured(j);
       }
-      translate((baseYoko+1)*squareSize, 0);
+      translate((baseYoko+1)*board.squareSize, 0);
     }
     popMatrix();
   }
   void drawInfo() {
     fill(#FFFFFF);
-    rect(squareSize, 3*squareSize, baseYoko*squareSize, squareSize);
+    rect(board.squareSize, 3*board.squareSize, baseYoko*board.squareSize, board.squareSize);
     fill(#000000);
     textSize(20);
     if (gs.win==0) {
-      text("Left win!!", 1.5*squareSize, 3.5*squareSize);
-      text("Retry?", 2.8*squareSize, 3.8*squareSize);
+      text("Left win!!", 1.5*board.squareSize, 3.5*board.squareSize);
+      text("Retry?", 2.8*board.squareSize, 3.8*board.squareSize);
     } else if (gs.win==1) {
-      text("Right win!!", 3.5*squareSize, 3.5*squareSize);
-      text("Retry?", 2.5*squareSize, 3.8*squareSize);
+      text("Right win!!", 3.5*board.squareSize, 3.5*board.squareSize);
+      text("Retry?", 2.5*board.squareSize, 3.8*board.squareSize);
     } else if (gs.turn==0) {
-      text("<- Left turn", 1.5*squareSize, 3.5*squareSize);
+      text("<- Left turn", 1.5*board.squareSize, 3.5*board.squareSize);
     } else {
-      text("Right turn ->", 3.5*squareSize, 3.5*squareSize);
+      text("Right turn ->", 3.5*board.squareSize, 3.5*board.squareSize);
     }
   }
 
@@ -81,7 +56,7 @@ class Banmen { //<>//
       //println(" ");
       if (koma != null && koma.team == gs.turn) {
         fill(#FF0000, 100);
-        rect(x*squareSize, y*squareSize, squareSize, squareSize);
+        rect(x*board.squareSize, y*board.squareSize, board.squareSize, board.squareSize);
         koma.kStat.selected=true;
         gs.selected = true;
         noLoop();

@@ -1,26 +1,29 @@
-static int squareSize = 100; //<>//
+//final static int squareSize = 100; //<>//
 Banmen banmen;
 GameStatus gs;
 KomaSet mySet;
+Board board;
 
 void setup() {
-  surface.setSize(6*squareSize, 4*squareSize);
   mySet = new KomaSet();
   banmen = new Banmen();
   gs = new GameStatus();
+  board = new Board();
+  surface.setSize(6*board.squareSize, 4*board.squareSize);
 }
 
 void draw(){
-  banmen.drawBaseBanmen();
-  banmen.drawBaseMochiBanmen();
+  //banmen.drawBaseBanmen();
+  board.draw();
+  //banmen.drawBaseMochiBanmen();
   banmen.drawKomas();
   banmen.drawMochiKomas();
   banmen.drawInfo();
 }
 
 void mouseReleased(){
-  int x = mouseX/squareSize;
-  int y = mouseY/squareSize;
+  int x = mouseX/board.squareSize;
+  int y = mouseY/board.squareSize;
   if(gs.win>=0 && y>=3 && x>=2 && x<=3){
     this.reset();
   }else if(gs.win<0){
