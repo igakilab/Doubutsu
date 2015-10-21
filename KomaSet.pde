@@ -32,21 +32,7 @@ class KomaSet {
     }
     return null;
   }
-  //@Deprecated
-  Koma getKomaFromPlaceByTeam(int team, int x, int y) {
-    for (Koma k : komas) {
-      if (k.team==team && x == k.x && y == k.y && k.kStat.exists()) {
-        return k;
-      } else if (k.team==team && x==-1 && k.kStat.isCaptured() && k.team==0 && k.y==y) {
-        println(k.name+k.team);
-        return k;
-      } else if (k.team==team && x==4 && k.kStat.isCaptured() && k.team==1 && k.y==y) {
-        println(k.name+k.team);
-        return k;
-      }
-    }
-    return null;
-  }
+
 
   Koma getKomaFromBaseBoardByTeam(int team, int x, int y) {
     for (Koma k : komas) {
@@ -95,7 +81,7 @@ class KomaSet {
       hiyoko.kStat.captured=true;
       hiyoko.team = (torareru.team+1)%2;
     } else if (torareru.name.equals("lion")) {
-      win=toru.team;
+      gs.win=toru.team;
     } else {
       torareru.kStat.captured=true;
       print(torareru.name+" team:"+torareru.team);
@@ -116,7 +102,7 @@ class KomaSet {
       niwatori.y = y;
       niwatori.team=k.team;
     } else if (k.name.equals("lion") && ((k.team==0 && x==3) || (k.team==1 && x==0))) {
-      win = k.team;
+      gs.win = k.team;
       k.x=x;
       k.y=y;
     } else {
