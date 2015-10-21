@@ -3,27 +3,7 @@ class Banmen { //<>//
   final int baseTate = 3;
   final int mochiHaba = 4;
 
-  void drawKomas() {
-    pushMatrix();
-    translate(board.squareSize, 0);
-    for (Koma k : mySet.getKomas()) {
-      k.draw();
-    }
-    popMatrix();
-  }
-  void drawMochiKomas() {
-    pushMatrix();
-    stroke(#FFFFFF);
-    //strokeWeight(2);
-    for (int i=0; i<2; i++) {
-      Koma[] cKomas = mySet.getCapturedKoma(i);
-      for (int j=0; j<cKomas.length; j++) {
-        cKomas[j].drawCaptured(j);
-      }
-      translate((baseYoko+1)*board.squareSize, 0);
-    }
-    popMatrix();
-  }
+
 
   /**
    ** 盤面がクリックされたときによばれるメソッド
