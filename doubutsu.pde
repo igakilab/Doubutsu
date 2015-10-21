@@ -1,8 +1,5 @@
 static int squareSize = 100; //<>//
 Banmen banmen;
-//int turn = 0;
-//int win = -1;//0になるとLeftの勝ち，1になるとRightの勝ち
-//boolean selected = false;
 GameStatus gs;
 KomaSet mySet;
 
@@ -32,9 +29,6 @@ void mouseReleased(){
 }
 
 void reset(){
-  //turn = 0;
-  //win = -1;
-  //selected = false;
   gs = new GameStatus();
   mySet = new KomaSet();
   banmen = new Banmen();
