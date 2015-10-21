@@ -3,22 +3,25 @@ Banmen banmen;
 GameStatus gs;
 KomaSet mySet;
 Board board;
+KomaList komaList;
 
 void setup() {
   mySet = new KomaSet();
   banmen = new Banmen();
   gs = new GameStatus();
   board = new Board();
+  komaList = new KomaList();
   surface.setSize(6*board.squareSize, 4*board.squareSize);
 }
 
 void draw(){
   //banmen.drawBaseBanmen();
   board.draw();
+  komaList.draw();
   //banmen.drawBaseMochiBanmen();
-  banmen.drawKomas();
-  banmen.drawMochiKomas();
-  banmen.drawInfo();
+  //banmen.drawKomas();
+  //banmen.drawMochiKomas();
+  //banmen.drawInfo();
 }
 
 void mouseReleased(){

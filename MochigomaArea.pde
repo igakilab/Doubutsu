@@ -3,7 +3,6 @@ class MochigomaArea extends AbstractArea {
     super(posX, posY, yoko, tate);
   }
   void draw() {
-    noStroke();
     for (int i=posX; i<posX+yoko; i++) {
       for (int j=posY; j<posY+tate; j++) {
         fill(#dddddd);
