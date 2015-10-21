@@ -24,23 +24,6 @@ class Banmen { //<>//
     }
     popMatrix();
   }
-  void drawInfo() {
-    fill(#FFFFFF);
-    rect(board.squareSize, 3*board.squareSize, baseYoko*board.squareSize, board.squareSize);
-    fill(#000000);
-    textSize(20);
-    if (gs.win==0) {
-      text("Left win!!", 1.5*board.squareSize, 3.5*board.squareSize);
-      text("Retry?", 2.8*board.squareSize, 3.8*board.squareSize);
-    } else if (gs.win==1) {
-      text("Right win!!", 3.5*board.squareSize, 3.5*board.squareSize);
-      text("Retry?", 2.5*board.squareSize, 3.8*board.squareSize);
-    } else if (gs.turn==0) {
-      text("<- Left turn", 1.5*board.squareSize, 3.5*board.squareSize);
-    } else {
-      text("Right turn ->", 3.5*board.squareSize, 3.5*board.squareSize);
-    }
-  }
 
   /**
    ** 盤面がクリックされたときによばれるメソッド
