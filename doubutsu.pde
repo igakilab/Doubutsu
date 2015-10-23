@@ -1,14 +1,9 @@
-//final static int squareSize = 100; //<>//
-//Banmen banmen;
-GameStatus gs;
-//KomaSet mySet;
+GameStatus gs; //<>//
 Board board;
 KomaList komaList;
 Logger logger = new Logger();
 
 void setup() {
-  //mySet = new KomaSet();
-  //banmen = new Banmen();
   gs = new GameStatus();
   board = new Board();
   komaList = new KomaList();
@@ -16,13 +11,8 @@ void setup() {
 }
 
 void draw(){
-  //banmen.drawBaseBanmen();
   board.draw();
   komaList.draw();
-  //banmen.drawBaseMochiBanmen();
-  //banmen.drawKomas();
-  //banmen.drawMochiKomas();
-  //banmen.drawInfo();
 }
 
 void mouseReleased(){
@@ -31,14 +21,11 @@ void mouseReleased(){
   if(gs.win>=0 && y>=3 && x>=2 && x<=3){
     this.reset();
   }else if(gs.win<0){
-    //banmen.select(x,y);
     board.select(x,y);
   }
 }
 
 void reset(){
-  //mySet = new KomaSet();
-  //banmen = new Banmen();
   gs = new GameStatus();
   board = new Board();
   komaList = new KomaList();

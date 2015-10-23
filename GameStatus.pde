@@ -6,4 +6,8 @@ class GameStatus {
   int checkWinner(){
     return 0;
   }
+  
+  void checkPromote(){
+    
+  }
 }
