@@ -5,7 +5,6 @@ class BaseArea extends AbstractArea{
   }
   
   void draw(){
-    //noStroke();
     for(int i=posX;i< posX+yoko;i++){
       for(int j=posY;j< posY+tate;j++){
         fill(#ffffc5);

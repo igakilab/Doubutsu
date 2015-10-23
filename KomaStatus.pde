@@ -9,9 +9,6 @@ class KomaStatus {
     this.selected = false;
   }
 
-  //boolean exists() {
-  //  return this.active;
-  //}
   boolean isCaptured() {
     return this.active && this.captured;
   }

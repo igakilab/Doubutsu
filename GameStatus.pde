@@ -7,7 +7,4 @@ class GameStatus {
     return 0;
   }
   
-  void checkPromote(){
-    
-  }
 }

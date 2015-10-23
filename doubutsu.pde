@@ -4,9 +4,7 @@ KomaList komaList;
 Logger logger = new Logger();
 
 void setup() {
-  gs = new GameStatus();
-  board = new Board();
-  komaList = new KomaList();
+  this.reset();
   surface.setSize(6*board.squareSize, 4*board.squareSize);
 }
 
