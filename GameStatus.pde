@@ -4,18 +4,11 @@ class GameStatus {
   boolean selected = false;
 
   void checkWinner() {
-
     //ライオンがcaptureされているか
     //ライオンが相手陣地に入場しているか
     for (AbstractKoma k : komaList.komaArray) {
       if (k.name.equals("lion")) {
-        if (k.kStat.captured) {
-          this.win=k.team;
-          break;
-        } else if (k.team==0 && k.x==board.bArea.posX+board.bArea.yoko-1) {
-          this.win=k.team;
-          break;
-        } else if (k.team==1 && k.x==board.bArea.posX) {
+        if(k.kStat.captured || (k.team==0 && k.x==board.bArea.posX+board.bArea.yoko-1) ||(k.team==1 && k.x==board.bArea.posX)){
           this.win=k.team;
           break;
         }
