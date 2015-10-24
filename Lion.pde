@@ -12,4 +12,23 @@ class Lion extends AbstractKoma {
     if (abs(toX-this.x) <= 1 && abs(toY-this.y) <=1) return true;
     return false;
   }
+
+  //Lionをcaptureできる駒があるかを確認する(ある場合にtrue)
+  boolean canEnemyCaptureLion(int toX, int toY) {
+    
+    ArrayList<AbstractKoma> enemies = new ArrayList<AbstractKoma>();
+    
+    int[][] direction = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {0, -1}, {1, 0}, {1, 1}, {1, -1}};
+    for (int[] d : direction) {
+      AbstractKoma enemy = komaList.getKomaFromPlaceByTeam(x+d[0], y+d[1],(this.team+1)%2); 
+      if (enemy!=null) enemies.add(enemy);
+    }
+    for (AbstractKoma k : enemies) {
+      if (k.canMove(toX, toY)) {
+        println(k.name+" can get lion");
+        return false;
+      }
+    }
+    return true;
+  }
 }
