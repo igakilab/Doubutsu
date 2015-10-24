@@ -19,10 +19,10 @@ class KomaList {
     }
   }
 
+  //Mochigoma Areaに空きスペースがないか探索
   int getBlankIndexInMochigomaArea(int team) {
-    //Mochigoma Areaに空きスペースがないか探索
     for (int i=board.mArea[team].posY; i<board.mArea[team].posY+board.mArea[team].tate; i++) {
-      AbstractKoma koma = this.getKomaFromPlaceByTeam(board.mArea[team].posX, i, team);
+      AbstractKoma koma = this.getKomaFromPlace(board.mArea[team].posX, i);
       if (koma==null) return i;
     }
     return -1;//空きが無い場合
@@ -39,28 +39,24 @@ class KomaList {
     AbstractKoma koma = this.getKomaFromPlaceByTeam(x, y, gs.turn);
     if (koma != null) koma.kStat.selected=true;
   }
+
   AbstractKoma getKomaFromPlaceByTeam(int x, int y, int team) {
     for (AbstractKoma k : this.komaArray) {
-      if (team==k.team && x == k.x && y == k.y && k.kStat.active) {
-        println(k.name+k.team+":"+k.x+";"+k.y);
-        return k;
-      }
+      if (team==k.team && x == k.x && y == k.y && k.kStat.active) return k;
     }
     return null;
   }
   AbstractKoma getKomaFromPlace(int x, int y) {
     for (AbstractKoma k : this.komaArray) {
-      if (x == k.x && y == k.y && k.kStat.active) {
-        return k;
-      }
+      if (x == k.x && y == k.y && k.kStat.active) return k;
     }
     return null;
   }
-  
+
   //鶏が相手に取られると降格(demote)する
-  void demote(AbstractKoma niwatori){
-    for(AbstractKoma k:komaArray){
-      if(k.name.equals("hiyoko") && !k.kStat.active){
+  void demote(AbstractKoma niwatori) {
+    for (AbstractKoma k : komaArray) {
+      if (k.name.equals("hiyoko") && !k.kStat.active) {
         niwatori.kStat.active = false;
         k.kStat.active = true;
         k.kStat.captured = true;
@@ -72,10 +68,11 @@ class KomaList {
       }
     }
   }
-  
-  void promote(AbstractKoma hiyoko,int toX, int toY){
-    for(AbstractKoma k : komaArray){
-      if(k.name.equals("niwatori") && !k.kStat.active){
+
+  //ひよこが相手陣地に到着すると鶏に昇格する（ただし持ち駒からいきなり相手陣地に置かれた場合は昇格しない）
+  void promote(AbstractKoma hiyoko, int toX, int toY) {
+    for (AbstractKoma k : komaArray) {
+      if (k.name.equals("niwatori") && !k.kStat.active) {
         hiyoko.kStat.active = false;
         k.kStat.active = true;
         k.kStat.captured = false;
