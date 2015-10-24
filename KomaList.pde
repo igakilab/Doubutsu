@@ -53,22 +53,6 @@ class KomaList {
     return null;
   }
 
-  //鶏が相手に取られると降格(demote)する
-  void demote(AbstractKoma niwatori) {
-    for (AbstractKoma k : komaArray) {
-      if (k.name.equals("hiyoko") && !k.kStat.active) {
-        niwatori.kStat.active = false;
-        k.kStat.active = true;
-        k.kStat.captured = true;
-        k.kStat.selected = false;
-        k.x = niwatori.x;
-        k.y = niwatori.y;
-        k.team = niwatori.team;
-        break;
-      }
-    }
-  }
-
   //ひよこが相手陣地に到着すると鶏に昇格する（ただし持ち駒からいきなり相手陣地に置かれた場合は昇格しない）
   void promote(AbstractKoma hiyoko, int toX, int toY) {
     for (AbstractKoma k : komaArray) {
