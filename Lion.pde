@@ -30,7 +30,6 @@ class Lion extends AbstractKoma {
     }
     for (AbstractKoma k : enemies) {
       if (k.canMove(toX, toY)) {
-        println(k.name+" can get lion");
         return true;
       }
     }

@@ -41,10 +41,7 @@ class KomaList {
   }
   AbstractKoma getKomaFromPlaceByTeam(int x, int y, int team) {
     for (AbstractKoma k : this.komaArray) {
-      if (team==k.team && x == k.x && y == k.y && k.kStat.active) {
-        println(k.name+k.team+":"+k.x+";"+k.y);
-        return k;
-      }
+      if (team==k.team && x == k.x && y == k.y && k.kStat.active) return k;
     }
     return null;
   }
@@ -56,11 +53,11 @@ class KomaList {
     }
     return null;
   }
-  
+
   //鶏が相手に取られると降格(demote)する
-  void demote(AbstractKoma niwatori){
-    for(AbstractKoma k:komaArray){
-      if(k.name.equals("hiyoko") && !k.kStat.active){
+  void demote(AbstractKoma niwatori) {
+    for (AbstractKoma k : komaArray) {
+      if (k.name.equals("hiyoko") && !k.kStat.active) {
         niwatori.kStat.active = false;
         k.kStat.active = true;
         k.kStat.captured = true;
@@ -72,10 +69,10 @@ class KomaList {
       }
     }
   }
-  
-  void promote(AbstractKoma hiyoko,int toX, int toY){
-    for(AbstractKoma k : komaArray){
-      if(k.name.equals("niwatori") && !k.kStat.active){
+
+  void promote(AbstractKoma hiyoko, int toX, int toY) {
+    for (AbstractKoma k : komaArray) {
+      if (k.name.equals("niwatori") && !k.kStat.active) {
         hiyoko.kStat.active = false;
         k.kStat.active = true;
         k.kStat.captured = false;
