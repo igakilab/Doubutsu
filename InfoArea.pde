@@ -11,7 +11,7 @@ class InfoArea extends AbstractArea {
       text("Left win!!", (posX+0.3)*board.squareSize, (posY+0.5)*board.squareSize);
       text("Retry?", ((posX+yoko)/2+0.8)*board.squareSize, (posY+tate-0.5)*board.squareSize);
     } else if (gs.win==1) {
-      text("Right win!!", (posX+yoko-0.7)*board.squareSize, (posY+0.5)*board.squareSize);
+      text("Right win!!", (posX+yoko-1.3)*board.squareSize, (posY+0.5)*board.squareSize);
       text("Retry?", ((posX+yoko)/2+0.8)*board.squareSize, (posY+tate-0.5)*board.squareSize);
     } else if (gs.turn==0) {
       text("<- Left turn", (posX+0.3)*board.squareSize, (posY+0.5)*board.squareSize);
