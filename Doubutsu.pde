@@ -1,4 +1,4 @@
-GameStatus gs; //<>//
+GameStatus gs; //<>// //<>//
 Board board;
 KomaList komaList;
 
@@ -10,7 +10,6 @@ void setup() {
 void draw() {
   board.draw();
   komaList.draw();
-  gs.checkWinner();
 }
 
 void mouseReleased() {
