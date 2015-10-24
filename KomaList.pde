@@ -53,19 +53,4 @@ class KomaList {
     return null;
   }
 
-  //ひよこが相手陣地に到着すると鶏に昇格する（ただし持ち駒からいきなり相手陣地に置かれた場合は昇格しない）
-  void promote(AbstractKoma hiyoko, int toX, int toY) {
-    for (AbstractKoma k : komaArray) {
-      if (k.name.equals("niwatori") && !k.kStat.active) {
-        hiyoko.kStat.active = false;
-        k.kStat.active = true;
-        k.kStat.captured = false;
-        k.kStat.selected = false;
-        k.x = toX;
-        k.y = toY;
-        k.team = hiyoko.team;
-        break;
-      }
-    }
-  }
 }
