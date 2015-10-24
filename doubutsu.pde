@@ -1,38 +1,31 @@
-static int squareSize = 100; //<>//
-Banmen banmen;
-int turn = 0;
-int win = -1;//0になるとLeftの勝ち，1になるとRightの勝ち
-boolean selected = false;
-KomaSet mySet;
+GameStatus gs; //<>//
+Board board;
+KomaList komaList;
+Logger logger = new Logger();
 
 void setup() {
-  surface.setSize(6*squareSize, 4*squareSize);
-  mySet = new KomaSet();
-  banmen = new Banmen();
+  this.reset();
+  surface.setSize(6*board.squareSize, 4*board.squareSize);
 }
 
 void draw(){
-  banmen.drawBaseBanmen();
-  banmen.drawBaseMochiBanmen();
-  banmen.drawKomas();
-  banmen.drawMochiKomas();
-  banmen.drawInfo();
+  board.draw();
+  komaList.draw();
+  gs.checkWinner();
 }
 
 void mouseReleased(){
-  int x = mouseX/squareSize;
-  int y = mouseY/squareSize;
-  if(win>=0 && y>=3 && x>=2 && x<=3){
+  int x = mouseX/board.squareSize;
+  int y = mouseY/board.squareSize;
+  if(gs.win>=0 && y>=3 && x>=2 && x<=3){
     this.reset();
-  }else if(win<0){
-    banmen.select(x,y);
+  }else if(gs.win<0){
+    board.select(x,y);
   }
 }
 
 void reset(){
-  turn = 0;
-  win = -1;
-  selected = false;
-  mySet = new KomaSet();
-  banmen = new Banmen();
+  gs = new GameStatus();
+  board = new Board();
+  komaList = new KomaList();
 }
