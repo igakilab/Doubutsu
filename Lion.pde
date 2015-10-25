@@ -13,8 +13,6 @@ class Lion extends AbstractKoma {
 
     return false;
   }
-<<<<<<< HEAD
-=======
 
   //Lionが入場する状態でcaptureできる駒があるかを確認する(ある場合にtrue)
   boolean canEnemyCaptureLion(int toX, int toY) {
@@ -35,5 +33,4 @@ class Lion extends AbstractKoma {
     }
     return false;
   }
->>>>>>> refs/remotes/origin/master
 }
