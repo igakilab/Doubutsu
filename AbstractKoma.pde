@@ -36,13 +36,13 @@ abstract class AbstractKoma {
     rect(this.x*board.squareSize, this.y*board.squareSize, board.squareSize, board.squareSize);
   }
 
-  boolean existsInMainArea() {
+  boolean existsInBaseArea() {
     return this.kStat.active && !this.kStat.captured;
   }
 
   void move(int toX, int toY) {
     AbstractKoma koma = komaList.getKomaFromPlace(toX, toY);
-    if (this.existsInMainArea()) {
+    if (this.existsInBaseArea()) {
       if ((koma==null || koma.team != gs.turn) && this.canMove(toX, toY)) this.moveAndCapture(koma, toX, toY);
     } else {
       if (koma==null && this.canMove(toX, toY)) this.updatePos(toX, toY);
