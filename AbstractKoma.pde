@@ -64,7 +64,7 @@ abstract class AbstractKoma {
   void captured() {
     this.kStat.captured=true;
     this.team = (this.team+1)%2;
-    this.y = komaList.getBlankIndexInMochigomaArea(this.team);
+    this.y = board.mArea[this.team].posY;
     this.x = board.mArea[this.team].posX;
   }
 
