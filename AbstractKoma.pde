@@ -34,14 +34,4 @@ abstract class AbstractKoma {
     rect(this.x*board.squareSize, this.y*board.squareSize, board.squareSize, board.squareSize);
   }
 
-  void move(int toX, int toY) {
-    this.updatePos(toX, toY);
-  }
-  void updatePos(int toX, int toY) {
-    this.x=toX;
-    this.y=toY;
-    this.kStat.captured=false;
-    gs.turn = (gs.turn+1)%2;
-  }
-
 }
