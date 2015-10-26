@@ -8,6 +8,8 @@ class KomaList {
     komaArray[3] = new Zou("zou", 4, 2, 1);
     komaArray[4] = new Kirin("kirin", 1, 2, 0);
     komaArray[5] = new Kirin("kirin", 4, 0, 1);
+    komaArray[6] = new Lion("lion", 1, 1, 0);
+    komaArray[7] = new Lion("lion", 4, 1, 1);
   }
   void draw() {
     for (AbstractKoma k : komaArray) {
