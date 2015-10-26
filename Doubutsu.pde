@@ -1,4 +1,4 @@
-GameStatus gs; //<>// //<>//
+GameStatus gs; //<>//
 Board board;
 KomaList komaList;
 
@@ -10,12 +10,6 @@ void setup() {
 void draw() {
   board.draw();
   komaList.draw();
-}
-
-void mouseReleased() {
-  int x = mouseX/board.squareSize;
-  int y = mouseY/board.squareSize;
-  board.select(x, y);
 }
 
 void reset() {

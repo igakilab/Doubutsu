@@ -25,13 +25,5 @@ abstract class AbstractKoma {
     PImage img = loadImage(komaImage);
     image(img, board.squareSize*this.x+2, this.y*board.squareSize+2, board.squareSize-4, board.squareSize-4);
 
-    if (this.kStat.selected) this.drawSelected();
   }
-
-  //選択されている駒の色を変える
-  void drawSelected() {
-    fill(#FF0000, board.squareSize);
-    rect(this.x*board.squareSize, this.y*board.squareSize, board.squareSize, board.squareSize);
-  }
-
 }
