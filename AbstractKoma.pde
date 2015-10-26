@@ -36,17 +36,9 @@ abstract class AbstractKoma {
     rect(this.x*board.squareSize, this.y*board.squareSize, board.squareSize, board.squareSize);
   }
 
-  boolean existsInBaseArea() {
-    return this.kStat.active && !this.kStat.captured;
-  }
-
   void move(int toX, int toY) {
     AbstractKoma koma = komaList.getKomaFromPlace(toX, toY);
-    if (this.existsInBaseArea()) {
-      if ((koma==null || koma.team != gs.turn) && this.canMove(toX, toY)) this.moveAndCapture(koma, toX, toY);
-    } else {
-      if (koma==null && this.canMove(toX, toY)) this.updatePos(toX, toY);
-    }
+    if ((koma==null || koma.team != gs.turn) && this.canMove(toX, toY)) this.moveAndCapture(koma, toX, toY);
   }
   void updatePos(int toX, int toY) {
     this.x=toX;
@@ -67,5 +59,4 @@ abstract class AbstractKoma {
     this.y = board.mArea[this.team].posY;
     this.x = board.mArea[this.team].posX;
   }
-
 }
