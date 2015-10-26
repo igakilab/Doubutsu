@@ -8,8 +8,4 @@ class KomaStatus {
     this.captured = false;
     this.selected = false;
   }
-
-  boolean isCaptured() {
-    return this.active && this.captured;
-  }
 }

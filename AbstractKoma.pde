@@ -13,8 +13,6 @@ abstract class AbstractKoma {
     this.kStat = new KomaStatus(true);
   }
 
-  abstract boolean canMove(int toX, int toY);
-
   /**
    ** 自分自身（駒）を描画するメソッド
    **/
@@ -37,7 +35,7 @@ abstract class AbstractKoma {
   }
 
   void move(int toX, int toY) {
-    if (this.canMove(toX, toY)) this.updatePos(toX, toY);
+    this.updatePos(toX, toY);
   }
   void updatePos(int toX, int toY) {
     this.x=toX;

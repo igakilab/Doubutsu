@@ -4,9 +4,4 @@ class Hiyoko extends AbstractKoma {
     super(name, x, y, team);
   }
 
-  boolean canMove(int toX, int toY) {
-
-    return true;
-  }
-  
 }
