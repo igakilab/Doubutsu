@@ -10,6 +10,8 @@ class KomaList {
     komaArray[5] = new Kirin("kirin", 4, 0, 1);
     komaArray[6] = new Lion("lion", 1, 1, 0);
     komaArray[7] = new Lion("lion", 4, 1, 1);
+    komaArray[8] = new Hiyoko("niwatori", 0, 0, 0);//後でnon activeにする
+    komaArray[9] = new Hiyoko("niwatori", 5, 0, 1);//後でnon activeにする
   }
   void draw() {
     for (AbstractKoma k : komaArray) {
