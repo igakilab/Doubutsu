@@ -1,6 +1,5 @@
 GameStatus gs; //<>//
 Board board;
-AbstractKoma hiyoko = new Hiyoko("hiyoko", 2, 1, 0);
 
 void setup() {
   this.reset();
@@ -9,7 +8,6 @@ void setup() {
 
 void draw() {
   board.draw();
-  hiyoko.draw();
 }
 
 void reset() {
