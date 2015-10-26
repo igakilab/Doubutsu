@@ -37,8 +37,7 @@ abstract class AbstractKoma {
   }
 
   void move(int toX, int toY) {
-    AbstractKoma koma = komaList.getKomaFromPlace(toX, toY);
-    if ((koma==null || koma.team != gs.turn) && this.canMove(toX, toY)) this.moveAndCapture(koma, toX, toY);
+    if (this.canMove(toX, toY)) this.updatePos(toX, toY);
   }
   void updatePos(int toX, int toY) {
     this.x=toX;
@@ -47,16 +46,4 @@ abstract class AbstractKoma {
     gs.turn = (gs.turn+1)%2;
   }
 
-  void moveAndCapture(AbstractKoma enemy, int toX, int toY) {
-    this.updatePos(toX, toY);
-    if (enemy!=null) enemy.captured();
-  }
-
-  //取られた時の処理
-  void captured() {
-    this.kStat.captured=true;
-    this.team = (this.team+1)%2;
-    this.y = board.mArea[this.team].posY;
-    this.x = board.mArea[this.team].posX;
-  }
 }
