@@ -1,6 +1,5 @@
 GameStatus gs; //<>//
 Board board;
-KomaList komaList;
 
 void setup() {
   this.reset();
@@ -9,19 +8,9 @@ void setup() {
 
 void draw() {
   board.draw();
-  komaList.draw();
-  gs.checkWinner();
-}
-
-void mouseReleased() {
-  int x = mouseX/board.squareSize;
-  int y = mouseY/board.squareSize;
-  if (gs.win>=0 && board.iArea.isInThisArea(x,y)) this.reset();
-  else if (gs.win<0) board.select(x, y);
 }
 
 void reset() {
   gs = new GameStatus();
   board = new Board();
-  komaList = new KomaList();
 }
