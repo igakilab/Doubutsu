@@ -1,8 +1,7 @@
-Board board; //<>//
+int SQUARESIZE = 100; //<>//
 
 void setup() {
-  board = new Board();
-  surface.setSize(6*board.SQUARESIZE, 4*board.SQUARESIZE);
+  surface.setSize(6*SQUARESIZE, 4*SQUARESIZE);
 }
 
 void draw() {
