@@ -1,16 +1,9 @@
-GameStatus gs; //<>//
-Board board;
+Board board; //<>//
 
 void setup() {
-  this.reset();
-  surface.setSize(6*board.squareSize, 4*board.squareSize);
+  board = new Board();
+  surface.setSize(6*board.SQUARESIZE, 4*board.SQUARESIZE);
 }
 
 void draw() {
-  board.draw();
-}
-
-void reset() {
-  gs = new GameStatus();
-  board = new Board();
 }

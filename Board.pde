@@ -1,9 +1,3 @@
 class Board {
-  final int squareSize = 100;
-  
-  Board(){
-  }
-  
-  void draw(){
-  }
+  final int SQUARESIZE = 100;
 }
