@@ -1,5 +1,4 @@
 class Board {
-  final int squareSize = 100;
   AbstractArea bArea;
   AbstractArea[] mArea = new MochigomaArea[2];
   AbstractArea iArea;

@@ -25,15 +25,15 @@ abstract class AbstractKoma {
     else return;
 
     PImage img = loadImage(komaImage);
-    image(img, board.squareSize*this.x+2, this.y*board.squareSize+2, board.squareSize-4, board.squareSize-4);
+    image(img, SQUARESIZE*this.x+2, this.y*SQUARESIZE+2, SQUARESIZE-4, SQUARESIZE-4);
 
     if (this.kStat.selected) this.drawSelected();
   }
 
   //選択されている駒の色を変える
   void drawSelected() {
-    fill(#FF0000, board.squareSize);
-    rect(this.x*board.squareSize, this.y*board.squareSize, board.squareSize, board.squareSize);
+    fill(#FF0000, SQUARESIZE);
+    rect(this.x*SQUARESIZE, this.y*SQUARESIZE, SQUARESIZE, SQUARESIZE);
   }
 
   boolean existsInBaseArea() {

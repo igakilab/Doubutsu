@@ -10,7 +10,7 @@ class BaseArea extends AbstractArea {
         fill(#ffffc5);
         if (i==posX) fill(#c5ffc5);
         else if (i==posX+yoko-1) fill(#c5ffff);
-        rect(i*board.squareSize, j*board.squareSize, board.squareSize, board.squareSize);
+        rect(i*SQUARESIZE, j*SQUARESIZE, SQUARESIZE, SQUARESIZE);
       }
     }
   }
