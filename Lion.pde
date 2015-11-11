@@ -1,7 +1,7 @@
 class Lion extends AbstractKoma {
 
-  Lion(String name, int x, int y, int team) {
-    super(name, x, y, team);
+  Lion(String name, int x, int y, int team, boolean active) {
+    super(name, x, y, team, active);
   }
 
   boolean canMove(int toX, int toY) {

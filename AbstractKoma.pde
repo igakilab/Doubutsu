@@ -5,12 +5,12 @@ abstract class AbstractKoma {
   int team;//0 or 1
   KomaStatus kStat;
 
-  AbstractKoma(String name, int x, int y, int team) {
+  AbstractKoma(String name, int x, int y, int team, boolean active) {
     this.name = name;
     this.x = x;
     this.y = y;
     this.team = team;
-    this.kStat = new KomaStatus(true);
+    this.kStat = new KomaStatus(active);
   }
 
   abstract boolean canMove(int toX, int toY);

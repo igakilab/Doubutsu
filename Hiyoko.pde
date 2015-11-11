@@ -1,7 +1,7 @@
 class Hiyoko extends AbstractKoma {
 
-  Hiyoko(String name, int x, int y, int team) {
-    super(name, x, y, team);
+  Hiyoko(String name, int x, int y, int team, boolean active) {
+    super(name, x, y, team, active);
   }
 
   boolean canMove(int toX, int toY) {
