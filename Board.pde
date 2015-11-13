@@ -1,7 +1,7 @@
 class Board {
-  AbstractArea bArea;
-  AbstractArea iArea;
-  AbstractArea[] mArea = new MochigomaArea[2];
+  BaseArea bArea;
+  InfoArea iArea;
+  MochigomaArea[] mArea = new MochigomaArea[2];
 
   Board(){
     bArea = new BaseArea(1,0,4,3);
@@ -16,7 +16,7 @@ class Board {
     mArea[1].draw();
     iArea.draw();
   }
-  
+
   void select(int x, int y){
     AbstractKoma koma = komaList.getSelectedKoma();
     if(koma==null){
