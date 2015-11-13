@@ -1,7 +1,7 @@
 class Board {
-  AbstractArea bArea;
-  AbstractArea[] mArea = new MochigomaArea[2];
-  AbstractArea iArea;
+  BaseArea bArea;
+  MochigomaArea[] mArea = new MochigomaArea[2];
+  InfoArea iArea;
   
   Board(){
     bArea = new BaseArea(1,0,4,3);
@@ -25,13 +25,5 @@ class Board {
       koma.move(x,y);
       koma.kStat.selected=false;
     }
-  }
-
-  int getBlankIndexInMochigomaArea(int team) {
-    for (int i=this.mArea[team].posY; i<this.mArea[team].posY+this.mArea[team].tate; i++) {
-      AbstractKoma koma = komaList.getKomaFromPlace(this.mArea[team].posX, i);
-      if (koma==null) return i;
-    }
-    return -1;//空きが無い場合
   }
 }
