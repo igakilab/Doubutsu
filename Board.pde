@@ -25,4 +25,5 @@ class Board {
       koma.move(x,y);
       koma.kStat.selected=false;
     }
-  }}
+  }
+}
