@@ -26,4 +26,12 @@ class Board {
       koma.kStat.selected=false;
     }
   }
+
+  int getBlankIndexInMochigomaArea(int team) {
+    for (int i=this.mArea[team].posY; i<this.mArea[team].posY+this.mArea[team].tate; i++) {
+      AbstractKoma koma = komaList.getKomaFromPlace(this.mArea[team].posX, i);
+      if (koma==null) return i;
+    }
+    return -1;//空きが無い場合
+  }
 }

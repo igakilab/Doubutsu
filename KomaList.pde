@@ -19,14 +19,6 @@ class KomaList {
     }
   }
 
-  //Mochigoma Areaに空きスペースがないか探索
-  int getBlankIndexInMochigomaArea(int team) {
-    for (int i=board.mArea[team].posY; i<board.mArea[team].posY+board.mArea[team].tate; i++) {
-      AbstractKoma koma = this.getKomaFromPlace(board.mArea[team].posX, i);
-      if (koma==null) return i;
-    }
-    return -1;//空きが無い場合
-  }
 
   AbstractKoma getSelectedKoma() {
     for (AbstractKoma k : komaArray) {
