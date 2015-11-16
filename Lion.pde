@@ -26,7 +26,7 @@ class Lion extends AbstractKoma {
     int[][] direction = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {0, -1}, {1, 0}, {1, 1}, {1, -1}};
     for (int[] d : direction) {
       AbstractKoma enemy = komaList.getKomaFromPlaceByTeam(toX+d[0], toY+d[1], (this.team+1)%2); 
-      if (enemy!=null && enemy.existsInBaseArea()) enemies.add(enemy);
+      if (enemy!=null && enemy.kStat.isCaptured()) enemies.add(enemy);
     }
     for (AbstractKoma k : enemies) {
       if (k.canMove(toX, toY)) return true;
