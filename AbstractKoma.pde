@@ -38,12 +38,13 @@ abstract class AbstractKoma {
 
   void move(int toX, int toY) {
     AbstractKoma koma = komaList.getKomaFromPlace(toX, toY);
-    if (this.kStat.isCaptured()) {
-      if (koma==null && this.canMove(toX, toY)) this.updatePos(toX, toY);
-    } else {
-      if ((koma==null || koma.team != gs.turn) && this.canMove(toX, toY)) this.moveAndCapture(koma, toX, toY);
+    if (this.kStat.isCaptured() && koma==null) {
+      this.updatePos(toX, toY);
+    } else if((koma==null || koma.team != gs.turn) && this.canMove(toX, toY)) {
+      this.moveAndCapture(koma, toX, toY);
     }
   }
+  
   void updatePos(int toX, int toY) {
     this.x=toX;
     this.y=toY;
