@@ -8,8 +8,8 @@ class Niwatori extends AbstractKoma {
     if (!board.bArea.isInThisArea(toX,toY)) return false;
     if (this.kStat.isCaptured())return true;
 
-    if (this.team==0 && abs(x-this.x)<=1 && abs(y-this.y)<=1 && (this.x-x+abs(this.y-y))<2) return true;
-    if (this.team==1 && abs(x-this.x)<=1 && abs(y-this.y)<=1 && (x-this.x+abs(this.y-y))<2) return true;
+    if (this.team==0 && abs(toX-this.x)<=1 && abs(toY-this.y)<=1 && (this.x-toX+abs(this.y-toY))<2) return true;
+    if (this.team==1 && abs(toX-this.x)<=1 && abs(toY-this.y)<=1 && (toX-this.x+abs(this.y-toY))<2) return true;
 
     return false;
   }
