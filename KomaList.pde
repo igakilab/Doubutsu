@@ -44,4 +44,34 @@ class KomaList {
     }
     return null;
   }
+
+  void promote(AbstractKoma hiyoko, int toX, int toY) {
+    for (AbstractKoma k : komaArray) {
+      if (k.name.equals("niwatori") && !k.kStat.active) {
+        hiyoko.kStat.active = false;
+        k.kStat.active = true;
+        k.kStat.captured = false;
+        k.kStat.selected = false;
+        k.x = toX;
+        k.y = toY;
+        k.team = hiyoko.team;
+        break;
+      }
+    }
+  }
+
+  void demote(AbstractKoma niwatori) {
+    for (AbstractKoma k : komaArray) {
+      if (k.name.equals("hiyoko") && !k.kStat.active) {
+        niwatori.kStat.active = false;
+        k.kStat.active = true;
+        k.kStat.captured = true;
+        k.kStat.selected = false;
+        k.x = niwatori.x;
+        k.y = niwatori.y;
+        k.team = niwatori.team;
+        break;
+      }
+    }
+  }
 }
