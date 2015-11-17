@@ -8,13 +8,13 @@ class Lion extends AbstractKoma {
 
     if (!board.bArea.isInThisArea(toX,toY)) return false;
 
-    if ((abs(toX-this.x) <= 1 && abs(toY-this.y) <=1) && !this.canEnemyCaptureLion(toX, toY)) return true;
+    if ((abs(toX-this.x) <= 1 && abs(toY-this.y) <=1) && !this.isCapturedByEnemy(toX, toY)) return true;
 
     return false;
   }
 
   //Lionが入場する状態でcaptureできる駒があるかを確認する(ある場合にtrue)
-  boolean canEnemyCaptureLion(int toX, int toY) {
+  boolean isCapturedByEnemy(int toX, int toY) {
 
     //Lionが敵陣地に入場するときのみチェックする
     if (this.team==0 && toX!=board.bArea.posX+board.bArea.yoko-1) return false;
