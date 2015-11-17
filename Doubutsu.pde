@@ -1,13 +1,11 @@
 final int SQUARESIZE = 100; //<>//
+GameStatus gs;
 Board board;
 KomaList komaList;
-GameStatus gs;
 
 void setup() {
+  reset();
   surface.setSize(6*SQUARESIZE, 4*SQUARESIZE);
-  board = new Board();
-  komaList = new KomaList();
-  gs = new GameStatus();
 }
 
 void draw() {
@@ -19,5 +17,12 @@ void draw() {
 void mouseReleased() {
   int x = mouseX/SQUARESIZE;
   int y = mouseY/SQUARESIZE;
-  board.select(x, y);
+  if (gs.win>=0 && board.iArea.isInThisArea(x,y)) this.reset();
+  else if (gs.win<0) board.select(x, y);
+}
+
+void reset() {
+  gs = new GameStatus();
+  board = new Board();
+  komaList = new KomaList();
 }
