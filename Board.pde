@@ -2,7 +2,6 @@ class Board {
   BaseArea bArea;
   InfoArea iArea;
   MochigomaArea[] mArea = new MochigomaArea[2];
-
   Board(){
     bArea = new BaseArea(1,0,4,3);
     iArea = new InfoArea(1,3,4,1);
